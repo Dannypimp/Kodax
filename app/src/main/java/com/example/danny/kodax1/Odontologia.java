@@ -35,7 +35,7 @@ public class Odontologia extends AppCompatActivity {
         lista = (ListView)findViewById(R.id.ListOdo);
 
 
-        
+
         cosultadb();
 
         ArrayAdapter ada = new ArrayAdapter(this, android.R.layout.simple_list_item_1,algo);
