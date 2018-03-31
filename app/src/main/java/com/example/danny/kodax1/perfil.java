@@ -19,10 +19,10 @@ import com.example.danny.kodax1.Usuarios.Usuario;
 
 public class perfil extends AppCompatActivity {
 
-    TextView nombre;
+    TextView nombre, nombreClinica, horario, direccion;
 
     private static final int REQUEST_CALL =1;
-    private Button mButtonNumber;
+    private TextView mButtonNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class perfil extends AppCompatActivity {
         setContentView(R.layout.activity_perfil);
 
 
-        mButtonNumber = (Button)findViewById(R.id.button_number);
+        mButtonNumber = (TextView)findViewById(R.id.button_number);
         ImageView imageCall = (ImageView)findViewById(R.id.image_call);
 
         imageCall.setOnClickListener(new View.OnClickListener() {
@@ -40,7 +40,10 @@ public class perfil extends AppCompatActivity {
             }
         });
 
-        nombre = (TextView) findViewById(R.id.textView2);
+        nombre = (TextView) findViewById(R.id.textView31);
+        nombreClinica = (TextView) findViewById(R.id.textView2);
+        horario = (TextView) findViewById(R.id.textView4);
+        direccion = (TextView) findViewById(R.id.textView);
 
         Bundle obtenerO = getIntent().getExtras();
         Usuario user = null;
@@ -48,6 +51,10 @@ public class perfil extends AppCompatActivity {
         if (obtenerO != null){
             user = (Usuario) obtenerO.getSerializable("usuario");
             nombre.setText(user.getNombre().toString());
+            nombreClinica.setText(user.getNombreClinica().toString());
+            horario.setText(user.getHorario().toString());
+            direccion.setText(user.getDireccion().toString());
+            mButtonNumber.setText(user.getTelefono().toString());
         }
 
 
