@@ -12,9 +12,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.danny.kodax1.Usuarios.Usuario;
+
 public class perfil extends AppCompatActivity {
+
+    TextView nombre;
 
     private static final int REQUEST_CALL =1;
     private Button mButtonNumber;
@@ -34,6 +39,16 @@ public class perfil extends AppCompatActivity {
                 makePhoneCall();
             }
         });
+
+        nombre = (TextView) findViewById(R.id.textView2);
+
+        Bundle obtenerO = getIntent().getExtras();
+        Usuario user = null;
+
+        if (obtenerO != null){
+            user = (Usuario) obtenerO.getSerializable("usuario");
+            nombre.setText(user.getNombre().toString());
+        }
 
 
     }
