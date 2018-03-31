@@ -99,36 +99,6 @@ public class Odontologia extends AppCompatActivity {
 
     private void ver() {
 
-        DataBase dataBase = new DataBase(this,"BD1",null,1);
-        SQLiteDatabase db = dataBase.getReadableDatabase();
-        if(db!=null){
-            Cursor c = db.rawQuery("SELECT * from registros",null);
-            int cantidad = c.getCount();
-            int i=0;
-            String[] arreglo= new String[cantidad];
-            if (c.moveToFirst()){
-                do {
-
-                    String linea= c.getString(1);
-
-                    arreglo [i] = linea;
-                    i++;
-
-
-
-                }while (c.moveToNext());
-            }
-
-            ArrayAdapter<String>adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arreglo);
-            lista.setAdapter(adapter);
-
-
-
-        }
-
-
-
-
 
     }
 
