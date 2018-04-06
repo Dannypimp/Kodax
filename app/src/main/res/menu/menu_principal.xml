@@ -4,19 +4,11 @@
     tools:context="com.example.danny.kodax1.Principal">
 
     <item
+        android:icon="@drawable/ic_lock"
         android:id="@+id/contacto"
         android:title="Otro menu"
         android:titleCondensed="otro"
         app:showAsAction="always"
         ></item>
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_settings1"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+
 </menu>
