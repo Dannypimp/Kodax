@@ -43,7 +43,7 @@ public class DataBase extends SQLiteOpenHelper {
 
     public void insertarregis(String nomCli,String nom, String correo, String pass, String espe, String dire, String tele) {
         ContentValues valores = new ContentValues();
-        valores.put("Nombre de Clinica", nomCli);
+        valores.put("NombreClinica", nomCli);
         valores.put("Nombre", nom);
         valores.put("Correo", correo);
         valores.put("Contraseña", pass);

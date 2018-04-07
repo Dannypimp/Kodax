@@ -68,7 +68,7 @@
             android:layout_width="352dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             android:layout_weight="0.10" />
 
         <TextView

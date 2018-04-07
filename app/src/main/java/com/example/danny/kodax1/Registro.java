@@ -19,6 +19,7 @@ public class Registro extends AppCompatActivity {
     EditText nombreClinica, nombre, corre, contra,  dir, tel;
     Button regist;
 
+    String nClinica, nom, correo, cont, direc, tele, espe;
     DataBase db = new DataBase(this,"BD1",null,1);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class Registro extends AppCompatActivity {
         setContentView(R.layout.activity_registro);
 
 
+        nombreClinica = (EditText)findViewById(R.id.edit0);
         nombre = (EditText)findViewById(R.id.edit1);
         corre = (EditText)findViewById(R.id.edit2);
         contra = (EditText)findViewById(R.id.edit3);
@@ -41,14 +43,16 @@ public class Registro extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                nClinica = nombreClinica.getText().toString();
+                nom = nombre.getText().toString();
+                correo = corre.getText().toString();
+                cont = contra.getText().toString();
+                direc = dir.getText().toString();
+                tele = tel.getText().toString();
+                espe = esp.getSelectedItem().toString();
+
                 db.abrir();
-                db.insertarregis(String.valueOf(nombre.getText()),
-                                 String.valueOf(nombre .getText()),
-                                 String.valueOf(corre.getText()),
-                                 String.valueOf(contra.getText()),
-                                 esp.getSelectedItem().toString(),
-                                 String.valueOf(dir.getText()),
-                                 String.valueOf(tel.getText()));
+                db.insertarregis(nClinica, nom, correo, cont, espe, direc, tele);
                 db.cerrar();
 
                 Intent i = new Intent(getApplication(),Principal.class);

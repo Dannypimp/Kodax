@@ -11,12 +11,19 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.danny.kodax1.Usuarios.Usuario;
+
+import java.util.ArrayList;
+
 public class ListaDoctores extends AppCompatActivity {
 
+
+    ArrayList<String> extra;
+    ArrayList<Usuario> usuarios;
     ListView lista;
     String condi, corre, espe, dire, tele;
 
-    DataBase db = new DataBase(this,"BD1",null,1);
+    DataBase db ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +33,22 @@ public class ListaDoctores extends AppCompatActivity {
         Bundle data = getIntent().getExtras();
         String area = data.getString("key_area","hola");
 
+
+        db = new DataBase(this,"BD1",null,1);
+
         lista = (ListView)findViewById(R.id.ListOdo);
 
+
+
         ver(area);
+
+        ArrayAdapter ada = new ArrayAdapter(this, android.R.layout.simple_list_item_1,extra);
+        lista.setAdapter(ada);
+
+
+
+
+
 
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -50,43 +70,40 @@ public class ListaDoctores extends AppCompatActivity {
 
     private void ver(String especialidad) {
 
-        DataBase dataBase = new DataBase(this,"BD1",null,1);
-        SQLiteDatabase db = dataBase.getReadableDatabase();
-        if(db!=null){
-            Cursor c = db.rawQuery("SELECT * FROM registros WHERE Especialida = '"+especialidad+"';",null);
-            int cantidad = c.getCount();
-            int i=0;
-            String[] arreglo= new String[cantidad];
-            if (c.moveToFirst()){
-                do {
+        SQLiteDatabase db1 = db.getReadableDatabase();
 
-                    condi = c.getString(1);
-                    corre = c.getString(2);
-                    espe = c.getString(4);
-                    dire = c.getString(5);
-                    tele = c.getString(6);
+        Usuario u = null;
 
-                    arreglo [i] = condi;
-                    i++;
+        usuarios =  new ArrayList<Usuario>();
 
+        Cursor c = db1.rawQuery("SELECT * FROM registros WHERE Especialida = '"+especialidad+"'",null   );
 
+        while (c.moveToNext()){
+            u = new Usuario();
 
-                }while (c.moveToNext());
-            }else{
-                Toast.makeText(getApplicationContext(), "No hay registros", Toast.LENGTH_SHORT).show();
-            }
+            u.setId(c.getInt(0));
+            u.setNombre(c.getString(2));
+            u.setEspecialidad(c.getString(5));
+            u.setDireccion(c.getString(6));
+            u.setNombreClinica(c.getString(1));
+            u.setTelefono(c.getString(7));
+            u.setCorreo(c.getString(3));
+            u.setContrasena(c.getString(4));
 
-            ArrayAdapter<String>adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arreglo);
-            lista.setAdapter(adapter);
-
-
-
+            usuarios.add(u);
         }
 
-
-
-
+        obtener();
 
     }
 
+    private void obtener() {
+        extra= new ArrayList<String>();
+
+        for (int i=0; i<usuarios.size(); i++){
+
+            extra.add(usuarios.get(i).getNombreClinica());
+        }
+
+    }
 }
