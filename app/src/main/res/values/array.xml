@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="esp">
+        <item>Odontologia</item>
+        <item>Dermatologia</item>
+        <item>Cardiologia</item>
+        <item>Pediatria</item>
+        <item>Ginecologia</item>
+        <item>Oftalmologia</item>
+        <item>Medicina general</item>
+        <item>Ortopedia</item>
+        <item>Psicologia</item>
+        <item>Otorinolaringologia</item>
+
+    </string-array>
+</resources>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fffefe"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.danny.kodax1.Principal"
     tools:showIn="@layout/activity_principal">
@@ -26,11 +27,11 @@
                 <ImageView
                     android:layout_margin="20dp"
                     android:layout_gravity="center"
-                    android:id="@+id/gin"
+                    android:id="@+id/card"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_weight="5"
-                    android:src="@drawable/ortop"
+                    android:src="@drawable/iconocardi"
                     android:onClick=""
                     />
 
@@ -41,8 +42,7 @@
                     android:layout_weight="5"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:onClick="pediatria"
-                    android:src="@drawable/iconocardi" />
+                    android:src="@drawable/iconopedia" />
 
 
             </LinearLayout>
@@ -55,7 +55,7 @@
                 <ImageView
                     android:layout_margin="20dp"
                     android:layout_gravity="center"
-                    android:id="@+id/mg"
+                    android:id="@+id/derma"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:src="@drawable/iconoderma" />
@@ -67,7 +67,6 @@
                     android:id="@+id/od"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:onClick="odontologia"
                     app:srcCompat="@drawable/odon" />
 
 
@@ -82,21 +81,20 @@
                 <ImageView
                     android:layout_margin="20dp"
                     android:layout_gravity="center"
-                    android:id="@+id/derm"
+                    android:id="@+id/otorri"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:onClick="dermatologia"
+
                     app:srcCompat="@drawable/iconooto" />
 
 
                 <ImageView
                     android:layout_margin="20dp"
                     android:layout_gravity="center"
-                    android:id="@+id/crdl"
+                    android:id="@+id/general"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:onClick="card"
-                    app:srcCompat="@drawable/medigen" />
+                    android:src="@drawable/med" />
             </LinearLayout>
 
             <LinearLayout
@@ -107,22 +105,22 @@
                 <ImageView
                     android:layout_margin="20dp"
                     android:layout_gravity="center"
-                    android:id="@+id/gin1"
+                    android:id="@+id/gine"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:src="@drawable/odon"
-                    android:onClick="ginecologia"
+                    android:src="@drawable/ginec"
+
                     />
 
                 <ImageView
                     android:layout_margin="20dp"
                     android:layout_gravity="center"
-                    android:id="@+id/pedi1"
-                    android:layout_width="150dp"
+                    android:id="@+id/orto"
+                    android:layout_width="105dp"
                     android:layout_height="150dp"
                     android:layout_weight="0.68"
-                    android:onClick="pediatria"
-                    android:src="@drawable/iconopedia" />
+
+                    android:src="@drawable/ortop" />
             </LinearLayout>
 
             <LinearLayout
@@ -133,46 +131,21 @@
                 <ImageView
                     android:layout_margin="20dp"
                     android:layout_gravity="center"
-                    android:id="@+id/mg1"
+                    android:id="@+id/psi"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:src="@drawable/ginec" />
+                    android:src="@drawable/psico" />
 
 
                 <ImageView
                     android:layout_margin="20dp"
                     android:layout_gravity="center"
-                    android:id="@+id/od1"
+                    android:id="@+id/oftal"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:onClick="odontologia"
-                    app:srcCompat="@drawable/odon" />
+                    app:srcCompat="@drawable/oftal" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_margin="20dp"
-                    android:layout_gravity="center"
-                    android:id="@+id/derm1"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:onClick="dermatologia"
-                    app:srcCompat="@drawable/oftalm" />
-
-
-                <ImageView
-                    android:layout_margin="20dp"
-                    android:layout_gravity="center"
-                    android:id="@+id/crdl1"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:onClick="card"
-                    app:srcCompat="@drawable/psico" />
-            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
