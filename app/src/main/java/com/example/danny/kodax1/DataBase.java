@@ -21,8 +21,8 @@ public class DataBase extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String query="create table registros(ID INTEGER PRIMARY KEY AUTOINCREMENT, Nombre text, Especialida text," +
-                "Dirrecion text, Horario text, Nombre_clinica text, Telefono text, Correo text ,Contrasena text );";
+        String query="create table registros(ID INTEGER PRIMARY KEY AUTOINCREMENT,NombreClinica text, Nombre text, Correo text ,Contraseña text," +
+                "Especialida text, Direccion text, Telefono text );";
         db.execSQL(query);
     }
 
@@ -36,28 +36,28 @@ public class DataBase extends SQLiteOpenHelper {
     }
 
 
+
     public void cerrar(){
         this.close();
     }
 
-    public void insertarregis(String nom, String espe, String dir, String hora,String nomcli, String tele, String correo, String pass) {
+    public void insertarregis(String nomCli,String nom, String correo, String pass, String espe, String dire, String tele) {
         ContentValues valores = new ContentValues();
+        valores.put("Nombre de Clinica", nomCli);
         valores.put("Nombre", nom);
-        valores.put("Especialida", espe);
-        valores.put("Dirrecion", dir);
-        valores.put("Horario", hora);
-        valores.put("Nombre_clinica", nomcli);
-        valores.put("Telefono", tele);
         valores.put("Correo", correo);
-        valores.put("Contrasena", pass);
+        valores.put("Contraseña", pass);
+        valores.put("Especialida", espe);
+        valores.put("Direccion", dire);
+        valores.put("Telefono", tele);
         this.getWritableDatabase().insert("registros", null, valores);
     }
 
     public Cursor consultLogin(String usu, String pass)throws SQLException {
 
         Cursor mcursor = null;
-        mcursor=this.getReadableDatabase().query("registros",new String[]{"ID","Nombre","Correo","Contraseña"},
-                "Correo like '"+usu+"' and Contraseña like '"+pass+"' ",null,null,null,null);
+        mcursor=this.getReadableDatabase().query("registros",new String[]{"ID","NombreClinica","Nombre","Correo","Contraseña, Especialida, Direccion, Telefono"},
+                "Correo like '"+usu+"' and Contraseña like '"+pass+"' ",null,null,null,null,null);
         return mcursor;
     }
 }

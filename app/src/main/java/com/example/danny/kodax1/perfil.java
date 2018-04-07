@@ -11,16 +11,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.danny.kodax1.Usuarios.Usuario;
 
 public class perfil extends AppCompatActivity {
+    EditText esp,dire,tel;
 
-    TextView nombre, nombreClinica, horario, direccion;
-
+    TextView nombreClinica,nombre, correo, especialidad, direccion, telefono, nom,cor;
     private static final int REQUEST_CALL =1;
     private TextView mButtonNumber;
 
@@ -30,7 +30,15 @@ public class perfil extends AppCompatActivity {
         setContentView(R.layout.activity_perfil);
 
 
-        mButtonNumber = (TextView)findViewById(R.id.button_number);
+        nombreClinica= (TextView)findViewById(R.id.textView1);
+        nombre= (TextView)findViewById(R.id.textView2);
+        correo = (TextView)findViewById(R.id.textView3);
+        especialidad = (TextView)findViewById(R.id.textView4);
+        direccion = (TextView)findViewById(R.id.textView);
+        telefono = (TextView)findViewById(R.id.button_number);
+
+
+        mButtonNumber = (TextView) findViewById(R.id.button_number);
         ImageView imageCall = (ImageView)findViewById(R.id.image_call);
 
         imageCall.setOnClickListener(new View.OnClickListener() {
@@ -40,23 +48,20 @@ public class perfil extends AppCompatActivity {
             }
         });
 
-        nombre = (TextView) findViewById(R.id.textView31);
-        nombreClinica = (TextView) findViewById(R.id.textView2);
-        horario = (TextView) findViewById(R.id.textView4);
-        direccion = (TextView) findViewById(R.id.textView);
+        Bundle bundle = getIntent().getExtras();
 
-        Bundle obtenerO = getIntent().getExtras();
-        Usuario user = null;
+        String ka, ka1, ka2, ka3, ka4;
+        ka = bundle.getString("da").toString();
+        ka1 = bundle.getString("da1").toString();
+        ka2 = bundle.getString("da2").toString();
+        ka3 = bundle.getString("da3").toString();
+        ka4 = bundle.getString("da4").toString();
 
-        if (obtenerO != null){
-            user = (Usuario) obtenerO.getSerializable("usuario");
-            nombre.setText(user.getNombre().toString());
-            nombreClinica.setText(user.getNombreClinica().toString());
-            horario.setText(user.getHorario().toString());
-            direccion.setText(user.getDireccion().toString());
-            mButtonNumber.setText(user.getTelefono().toString());
-        }
-
+        nombre.setText(ka);
+        correo.setText(ka1);
+        especialidad.setText(ka2);
+        direccion.setText(ka3);
+        telefono.setText(ka4);
 
     }
 

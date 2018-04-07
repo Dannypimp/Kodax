@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.danny.kodax1.prueba">
+    android:background="#eab5b5"
+    tools:context="com.example.danny.kodax1.Cardiologia">
 
-    <TextView
-        android:id="@+id/textView"
+    <ListView
+        android:id="@+id/ListCar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Correo"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        >
+
+    </ListView>
 </RelativeLayout>

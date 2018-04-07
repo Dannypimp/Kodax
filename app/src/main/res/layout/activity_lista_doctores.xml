@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#eab5b5"
     tools:context="com.example.danny.kodax1.Odontologia">
 
     <ListView

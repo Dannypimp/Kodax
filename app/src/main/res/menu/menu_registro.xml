@@ -1,16 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.danny.kodax1.Principal">
+    tools:context="com.example.danny.kodax1.Registro">
 
     <item
         android:icon="@drawable/contacto"
-        android:id="@+id/contacto"
+        android:id="@+id/registros"
         android:title="Otro menu"
         android:titleCondensed="otro"
         app:showAsAction="always"
-        ></item>
-
+        />
 
 </menu>
-

@@ -9,9 +9,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+
+
 public class Principal extends AppCompatActivity {
 
-ImageView ima ;
+ImageView cardio ,pedia,derma,od,otorri,general,gine,orto,psi,oftal ;
+
 
 
     @Override
@@ -21,12 +24,95 @@ ImageView ima ;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ima = (ImageView)findViewById(R.id.od);
+        cardio = (ImageView)findViewById(R.id.card);
+        pedia= (ImageView)findViewById(R.id.pedi);
+        derma= (ImageView)findViewById(R.id.derma);
+        od = (ImageView)findViewById(R.id.od);
+        otorri = (ImageView)findViewById(R.id.otorri);
+        general = (ImageView)findViewById(R.id.general);
+        gine = (ImageView)findViewById(R.id.gine);
+        orto = (ImageView)findViewById(R.id.orto);
+        psi= (ImageView)findViewById(R.id.psi);
+        oftal = (ImageView)findViewById(R.id.oftal);
 
-        ima.setOnClickListener(new View.OnClickListener() {
+
+        cardio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),Odontologia.class);
+                Intent i = new Intent(getApplicationContext(),ListaDoctores.class);
+                i.putExtra("key_area", "Cardiologia");
+                startActivity(i);
+            }
+        });
+        pedia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),ListaDoctores.class);
+                i.putExtra("key_area", "Pediatria");
+                startActivity(i);
+            }
+        });
+        derma.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),ListaDoctores.class);
+                i.putExtra("key_area", "Dermatologia");
+                startActivity(i);
+            }
+        });
+        od.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),ListaDoctores.class);
+                i.putExtra("key_area", "Odontologia");
+                startActivity(i);
+            }
+        });
+        otorri.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),ListaDoctores.class);
+                i.putExtra("key_area", "Otorinolaringologia");
+                startActivity(i);
+            }
+        });
+        general.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),ListaDoctores.class);
+                i.putExtra("key_area", "Medicina_General");
+                startActivity(i);
+            }
+        });
+        gine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),ListaDoctores.class);
+                i.putExtra("key_area", "Ginecologia");
+                startActivity(i);
+            }
+        });
+        orto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),ListaDoctores.class);
+                i.putExtra("key_area", "Ortopedia");
+                startActivity(i);
+            }
+        });
+        psi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),ListaDoctores.class);
+                i.putExtra("key_area", "Psicologia");
+                startActivity(i);
+            }
+        });
+        oftal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),ListaDoctores.class);
+                i.putExtra("key_area", "Oftalmologia");
                 startActivity(i);
             }
         });
