@@ -52,7 +52,7 @@ public class Registro extends AppCompatActivity {
                 espe = esp.getSelectedItem().toString();
 
                 db.abrir();
-                db.insertarregis(nClinica, nom, correo, cont, espe, direc, tele);
+                db.insertarregis(nClinica, nom, correo, cont, espe, direc, tele, 5374.653, 5347.6523);
                 db.cerrar();
 
                 Intent i = new Intent(getApplication(),Principal.class);
