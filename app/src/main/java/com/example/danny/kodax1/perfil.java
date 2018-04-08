@@ -16,31 +16,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.danny.kodax1.Usuarios.Usuario;
 
 public class perfil extends AppCompatActivity {
-    EditText esp,dire,tel;
 
     TextView nombreClinica,nombre, correo, especialidad, direccion, telefono, nom,cor;
     private static final int REQUEST_CALL =1;
-    private TextView mButtonNumber;
+    private static int id;
+    private Button buttonMapa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
 
-
-        nombreClinica= (TextView)findViewById(R.id.textView1);
-        nombre= (TextView)findViewById(R.id.textView2);
-        correo = (TextView)findViewById(R.id.textView3);
-        especialidad = (TextView)findViewById(R.id.textView4);
-        direccion = (TextView)findViewById(R.id.textView);
-        telefono = (TextView)findViewById(R.id.button_number);
-
-
-        mButtonNumber = (TextView) findViewById(R.id.button_number);
         ImageView imageCall = (ImageView)findViewById(R.id.image_call);
-
         imageCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,25 +38,38 @@ public class perfil extends AppCompatActivity {
             }
         });
 
+        nombreClinica= (TextView) findViewById(R.id.textView2);
+        nombre= (TextView) findViewById(R.id.textView31);
+        correo = (TextView) findViewById(R.id.textView3);
+        especialidad = (TextView) findViewById(R.id.textView4);
+        direccion = (TextView )findViewById(R.id.textView);
+        telefono = (TextView) findViewById(R.id.tvTelefono);
+        buttonMapa = (Button) findViewById(R.id.ubicarme);
+
         Bundle bundle = getIntent().getExtras();
+        Usuario usuario = null;
 
-        String ka, ka1, ka2, ka3, ka4;
-        ka = bundle.getString("da").toString();
-        ka1 = bundle.getString("da1").toString();
-        ka2 = bundle.getString("da2").toString();
-        ka3 = bundle.getString("da3").toString();
-        ka4 = bundle.getString("da4").toString();
+        if(bundle != null){
+            usuario = (Usuario) bundle.getSerializable("usuario");
+            nombre.setText(usuario.getNombre());
+            nombreClinica.setText(usuario.getNombreClinica());
+            direccion.setText(usuario.getDireccion());
+            telefono.setText(usuario.getTelefono());
+            id = usuario.getId();
+        }
 
-        nombre.setText(ka);
-        correo.setText(ka1);
-        especialidad.setText(ka2);
-        direccion.setText(ka3);
-        telefono.setText(ka4);
-
+        buttonMapa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+                intent.putExtra("id_key", id);
+                startActivity(intent);
+            }
+        });
     }
 
     private void makePhoneCall(){
-        String number = mButtonNumber.getText().toString();
+        String number = telefono.getText().toString();
         if(number.trim().length() > 0 ){
 
             if(ContextCompat.checkSelfPermission(perfil.this,

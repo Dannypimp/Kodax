@@ -9,19 +9,17 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.example.danny.kodax1.Usuarios.Usuario;
-
 import java.util.ArrayList;
 
 public class ListaDoctores extends AppCompatActivity {
 
-
     ArrayList<String> extra;
     ArrayList<Usuario> usuarios;
     ListView lista;
-    String condi, corre, espe, dire, tele;
+    AdapterList ada;
 
     DataBase db ;
 
@@ -33,43 +31,30 @@ public class ListaDoctores extends AppCompatActivity {
         Bundle data = getIntent().getExtras();
         String area = data.getString("key_area","hola");
 
-
         db = new DataBase(this,"BD1",null,1);
 
         lista = (ListView)findViewById(R.id.ListOdo);
 
-
-
         ver(area);
 
-        ArrayAdapter ada = new ArrayAdapter(this, android.R.layout.simple_list_item_1,extra);
+        ada = new AdapterList(getApplicationContext(), ver(area));
         lista.setAdapter(ada);
-
-
-
-
-
-
 
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(getApplication(),perfil.class);
-                i.putExtra("da", condi);
-                i.putExtra("da1", corre);
-                i.putExtra("da2", espe);
-                i.putExtra("da3", dire);
-                i.putExtra("da4", tele);
+                Usuario user = usuarios.get(position);
+                Intent i = new Intent(getApplicationContext(),perfil.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("usuario", user);
+                i.putExtras(bundle);
 
                 startActivity(i);
             }
         });
-
     }
 
-
-
-    private void ver(String especialidad) {
+    private ArrayList<Usuario> ver(String especialidad) {
 
         SQLiteDatabase db1 = db.getReadableDatabase();
 
@@ -81,7 +66,6 @@ public class ListaDoctores extends AppCompatActivity {
 
         while (c.moveToNext()){
             u = new Usuario();
-
             u.setId(c.getInt(0));
             u.setNombre(c.getString(2));
             u.setEspecialidad(c.getString(5));
@@ -90,21 +74,8 @@ public class ListaDoctores extends AppCompatActivity {
             u.setTelefono(c.getString(7));
             u.setCorreo(c.getString(3));
             u.setContrasena(c.getString(4));
-
             usuarios.add(u);
         }
-
-        obtener();
-
-    }
-
-    private void obtener() {
-        extra= new ArrayList<String>();
-
-        for (int i=0; i<usuarios.size(); i++){
-
-            extra.add(usuarios.get(i).getNombreClinica());
-        }
-
+        return usuarios;
     }
 }

@@ -7,26 +7,25 @@ import java.io.Serializable;
  */
 
 public class Usuario implements Serializable {
-    Integer id;
-    String nombre;
-    String especialidad;
-    String direccion;
-    String horario;
-    String nombreClinica;
-    String telefono;
-    String correo;
-    String contrasena;
+    private Integer id;
+    private String nombre;
+    private String especialidad;
+    private String direccion;
+    private String horario;
+    private String nombreClinica;
+    private String telefono;
+    private String correo;
+    private String contrasena;
+    private double latitud;
+    private double longitud;
 
     public Usuario() {
+    }
+
+    public Usuario(String nombre, String nombreClinica, int id) {
         this.id = id;
         this.nombre = nombre;
-        this.especialidad = especialidad;
-        this.direccion = direccion;
-        this.horario = horario;
         this.nombreClinica = nombreClinica;
-        this.telefono = telefono;
-        this.correo = correo;
-        this.contrasena = contrasena;
     }
 
     public Integer getId() {
@@ -99,5 +98,21 @@ public class Usuario implements Serializable {
 
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
+    }
+
+    public double getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(double latitud) {
+        this.latitud = latitud;
+    }
+
+    public double getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(double longitud) {
+        this.longitud = longitud;
     }
 }
