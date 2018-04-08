@@ -21,6 +21,9 @@ public class perfil extends AppCompatActivity {
 
     TextView nombre, nombreClinica, horario, direccion;
 
+
+    private Button ubicarme;
+
     private static final int REQUEST_CALL =1;
     private TextView mButtonNumber;
 
@@ -28,6 +31,20 @@ public class perfil extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
+
+
+        ubicarme=(Button)findViewById(R.id.ubicarme);
+
+
+        ubicarme.setOnClickListener(new View.OnClickListener()
+        {
+
+            public void onClick(View arg0){
+                Intent intent = new Intent(perfil.this, MapsActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
 
         mButtonNumber = (TextView)findViewById(R.id.button_number);
@@ -90,6 +107,4 @@ public class perfil extends AppCompatActivity {
             }
         }
     }
-
-
 }

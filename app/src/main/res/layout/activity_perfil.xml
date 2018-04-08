@@ -52,7 +52,7 @@
         android:layout_marginTop="33dp"
         android:layout_gravity="center"
         android:id="@+id/textView3"
-         />
+        />
 
     <TextView
         android:layout_width="match_parent"
@@ -65,52 +65,70 @@ de 8:00 am a 4:00 pm"
         android:id="@+id/textView4"
         android:layout_marginTop="13dp"
         android:layout_below="@+id/textView3"
-         />
+        />
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Dirección:
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="86dp"
+            android:text="Dirección:
 Barrio El Centro"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:textSize="20dp"
-        android:id="@+id/textView"
-        android:layout_below="@+id/textView4"
-        android:layout_alignRight="@+id/textView2"
-        android:layout_alignEnd="@+id/textView2"
-        android:layout_marginTop="36dp" />
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textSize="20dp"
+            android:layout_marginLeft="50dp"
+            android:id="@+id/textView"
+            android:layout_below="@+id/textView4"
+            android:layout_alignRight="@+id/textView2"
+            android:layout_alignEnd="@+id/textView2"
+            android:layout_marginTop="36dp" />
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ver mapa"
+            android:id="@+id/ubicarme"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="36dp"
+            android:background="@color/colorPrimaryDark"/>
 
-    <TextView
-        android:layout_width="140dp"
-        android:layout_height="55dp"
-        android:inputType="phone"
-        android:layout_marginTop="40dp"
-        android:textSize="25dp"
-        android:layout_marginLeft="50dp"
-        android:id="@+id/button_number"
-        android:layout_alignTop="@+id/image_call"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_alignStart="@+id/textView3" />
+    </LinearLayout>
 
-    <ImageView
-        android:layout_width="80dp"
-        android:layout_height="55dp"
-        android:src="@drawable/ic_phone"
-        android:fillColor="#17b739"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="61dp"
-        android:layout_marginLeft="50dp"
-        android:id="@+id/image_call"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/textView"
-        android:layout_toEndOf="@+id/textView" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-</LinearLayout>
+        <TextView
+            android:layout_width="140dp"
+            android:layout_height="55dp"
+            android:inputType="phone"
+            android:layout_marginTop="40dp"
+            android:textSize="25dp"
+            android:layout_marginLeft="50dp"
+            android:id="@+id/button_number"
+            android:layout_alignTop="@+id/image_call"
+            android:layout_alignLeft="@+id/textView3"
+            android:layout_alignStart="@+id/textView3" />
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="55dp"
+            android:src="@drawable/ic_phone"
+            android:fillColor="#17b739"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="61dp"
+            android:layout_marginLeft="50dp"
+            android:id="@+id/image_call"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/textView"
+            android:layout_toEndOf="@+id/textView" />
+
+    </LinearLayout>
 </LinearLayout>

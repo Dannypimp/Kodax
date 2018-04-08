@@ -94,14 +94,11 @@ public class Odontologia extends AppCompatActivity {
         for (int i=0; i<usuarios.size(); i++){
 
             algo.add(usuarios.get(i).getNombre());
+
         }
-
     }
-
 
     private void ver() {
 
-
     }
-
 }
