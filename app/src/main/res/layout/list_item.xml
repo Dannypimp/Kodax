@@ -11,8 +11,11 @@
         <TextView
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
+            android:textStyle="bold"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textSize="20dp"
+            android:textColor="#000000"
             android:text="Nombre:" />
 
         <TextView
@@ -20,6 +23,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:textStyle="bold"
             android:text="Clinica:" />
 
         <TextView
@@ -27,7 +33,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="id:" />
+            android:text="id:"
+            android:textStyle="bold"
+            android:visibility="invisible" />
     </LinearLayout>
 
     <LinearLayout
@@ -37,6 +45,8 @@
 
         <TextView
             android:id="@+id/nombre_item"
+            android:textStyle="bold"
+            android:textSize="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -47,6 +57,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textSize="20dp"
+            android:textStyle="bold"
             android:text="TextView" />
 
         <TextView
@@ -54,6 +66,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textStyle="bold"
+            android:visibility="invisible" />
     </LinearLayout>
 </LinearLayout>

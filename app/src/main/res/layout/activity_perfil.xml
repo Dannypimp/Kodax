@@ -57,12 +57,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Lunes a Viernes
-de 8:00 am a 4:00 pm"
+        android:text=""
         android:textSize="25dp"
         android:textAlignment="center"
         android:gravity="center"
-        android:id="@+id/textView4"
+        android:id="@+id/horario"
         android:layout_marginTop="13dp"
         android:layout_below="@+id/textView3"
         />
@@ -79,7 +78,7 @@ de 8:00 am a 4:00 pm"
             android:layout_height="86dp"
             android:layout_alignEnd="@+id/textView2"
             android:layout_alignRight="@+id/textView2"
-            android:layout_below="@+id/textView4"
+            android:layout_below="@+id/horario"
             android:layout_marginLeft="50dp"
             android:layout_marginTop="36dp"
             android:gravity="center"

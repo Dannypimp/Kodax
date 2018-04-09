@@ -22,7 +22,7 @@ public class DataBase extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         String query="create table registros(ID INTEGER PRIMARY KEY AUTOINCREMENT,NombreClinica text, Nombre text, Correo text ,Contraseña text," +
-                "Especialida text, Direccion text, Telefono text , Latitud INTEGER, Longitud INTEGER);";
+                "Especialida text, Direccion text,HorarioAtencion text, Telefono text , Latitud INTEGER, Longitud INTEGER);";
         db.execSQL(query);
     }
 
@@ -41,7 +41,7 @@ public class DataBase extends SQLiteOpenHelper {
         this.close();
     }
 
-    public void insertarregis(String nomCli,String nom, String correo, String pass, String espe, String dire, String tele, Double latitud, Double longitud) {
+    public void insertarregis(String nomCli,String nom, String correo, String pass, String espe, String dire,String hora, String tele, Double latitud, Double longitud) {
         ContentValues valores = new ContentValues();
 
         valores.put("Longitud", longitud);
@@ -52,7 +52,10 @@ public class DataBase extends SQLiteOpenHelper {
         valores.put("Nombre", nom);
         valores.put("Latitud", latitud);
         valores.put("Direccion", dire);
+        valores.put("Telefono", tele);
+        valores.put("HorarioAtencion", hora);
         valores.put("Especialida", espe);
+
 
         this.getWritableDatabase().insert("registros", null, valores);
     }
