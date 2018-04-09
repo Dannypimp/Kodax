@@ -35,10 +35,10 @@ public class perfil extends AppCompatActivity {
         correo = (TextView)findViewById(R.id.textView3);
         especialidad = (TextView)findViewById(R.id.textView4);
         direccion = (TextView)findViewById(R.id.textView);
-        telefono = (TextView)findViewById(R.id.button_number);
+        telefono = (TextView)findViewById(R.id.tvTelefono);
 
 
-        mButtonNumber = (TextView) findViewById(R.id.button_number);
+        mButtonNumber = (TextView) findViewById(R.id.tvTelefono);
         ImageView imageCall = (ImageView)findViewById(R.id.image_call);
 
         imageCall.setOnClickListener(new View.OnClickListener() {
