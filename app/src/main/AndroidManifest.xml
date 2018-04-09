@@ -32,58 +32,27 @@
         </activity>
         <activity
             android:name=".Login"
-            android:label="Login"
-            android:parentActivityName=".Principal">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Principal" />
+            android:label="Login" />
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        />
         <activity
             android:name=".Registro"
-            android:label="Registro"
-            android:parentActivityName=".Login">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Login" />
+            android:label="Registro" />
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".ListaDoctores"
+            android:label="Lista Doctores"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        />
-        <activity android:name=".ListaDoctores" />
         <activity android:name=".prueba" />
+
         <activity
             android:name=".perfil"
-            android:label="Perfil"
-            android:parentActivityName=".Principal">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Principal" />
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        />
+            android:label="Perfil" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
              Note that the API key is linked to the encryption key used to sign the APK.
              You need a different API key for each encryption key, including the release key that is used to
              sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -91,7 +60,10 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps" />
+        <activity
+            android:name=".MapsActivity2"
+            android:label="@string/title_activity_maps2"></activity>
     </application>
 
 </manifest>

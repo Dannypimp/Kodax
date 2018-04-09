@@ -71,7 +71,8 @@ public class ListaDoctores extends AppCompatActivity {
             u.setEspecialidad(c.getString(5));
             u.setDireccion(c.getString(6));
             u.setNombreClinica(c.getString(1));
-            u.setTelefono(c.getString(7));
+            u.setTelefono(c.getString(8));
+            u.setHorario(c.getString(7));
             u.setCorreo(c.getString(3));
             u.setContrasena(c.getString(4));
             usuarios.add(u);

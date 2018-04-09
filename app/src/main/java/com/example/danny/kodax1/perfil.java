@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,7 +19,7 @@ import com.example.danny.kodax1.Usuarios.Usuario;
 
 public class perfil extends AppCompatActivity {
 
-    TextView nombreClinica,nombre, correo, especialidad, direccion, telefono, nom,cor;
+    TextView nombreClinica,nombre, correo, horario_atencion, direccion, telefono, nom,cor;
     private static final int REQUEST_CALL =1;
     private static int id;
     private Button buttonMapa;
@@ -41,7 +40,9 @@ public class perfil extends AppCompatActivity {
         nombreClinica= (TextView) findViewById(R.id.textView2);
         nombre= (TextView) findViewById(R.id.textView31);
         correo = (TextView) findViewById(R.id.textView3);
-        especialidad = (TextView) findViewById(R.id.textView4);
+
+        horario_atencion = (TextView) findViewById(R.id.horario);
+
         direccion = (TextView )findViewById(R.id.textView);
         telefono = (TextView) findViewById(R.id.tvTelefono);
         buttonMapa = (Button) findViewById(R.id.ubicarme);
@@ -55,6 +56,7 @@ public class perfil extends AppCompatActivity {
             nombreClinica.setText(usuario.getNombreClinica());
             direccion.setText(usuario.getDireccion());
             telefono.setText(usuario.getTelefono());
+            horario_atencion.setText(usuario.getHorario());
             id = usuario.getId();
         }
 
