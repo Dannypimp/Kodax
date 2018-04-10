@@ -50,7 +50,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textColor="#000000"/>
 
         <TextView
             android:id="@+id/clinica_item"
@@ -59,7 +60,8 @@
             android:layout_weight="1"
             android:textSize="20dp"
             android:textStyle="bold"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textColor="#000000"/>
 
         <TextView
             android:id="@+id/id_usuario_item"

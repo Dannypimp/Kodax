@@ -166,6 +166,8 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
                 // mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney2, zoonlevel2));
 
             } else {
+
+
                 Toast.makeText(getApplicationContext(), "Enciende la ubicacion o tu movil no tiene gps", Toast.LENGTH_LONG).show();
             }
         }
