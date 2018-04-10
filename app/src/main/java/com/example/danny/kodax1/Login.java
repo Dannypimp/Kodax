@@ -3,6 +3,7 @@ package com.example.danny.kodax1;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -25,6 +26,7 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
 
 
         tvRegist = (TextView)findViewById(R.id.textView3);
