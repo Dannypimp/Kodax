@@ -16,6 +16,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class Registro extends AppCompatActivity {
 
@@ -51,35 +54,98 @@ public class Registro extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                nClinica = nombreClinica.getText().toString();
-                nom = nombre.getText().toString();
-                correo = corre.getText().toString();
-                cont = contra.getText().toString();
-                direc = dir.getText().toString();
-                hora = hor.getText().toString();
-                tele = tel.getText().toString();
-                espe = esp.getSelectedItem().toString();
+
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(Registro.this);
                 builder.setTitle("Registro");
-                builder.setMessage("Desea agregar su abicacion geografíca para que sus clientes encuentren mas facil su clinica?");
-                builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(getApplicationContext(), MapsActivity2.class);
-                        startActivityForResult(intent, 1);
-                    }
-                });
+                if (nombreClinica.getText().toString().isEmpty()) {
 
-                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        regsitro(0, 0);
-                    }
-                });
 
-                Dialog dialog = builder.create();
-                dialog.show();
+                    Toast.makeText(getApplicationContext(), "Llene todos los campos", Toast.LENGTH_SHORT).show();
+                    nombreClinica.requestFocus();
+
+                } else if (nombre.getText().toString().isEmpty()) {
+
+
+                    Toast.makeText(getApplicationContext(), "Llene todos los campos", Toast.LENGTH_SHORT).show();
+                    nombre.requestFocus();
+                } else if (corre.getText().toString().isEmpty()) {
+
+
+                    Toast.makeText(getApplicationContext(), "Llene todos los campos", Toast.LENGTH_SHORT).show();
+                    corre.requestFocus();
+
+
+                } else if (contra.getText().toString().isEmpty()) {
+
+
+                    Toast.makeText(getApplicationContext(), "Llene todos los campos", Toast.LENGTH_SHORT).show();
+                    contra.requestFocus();
+
+
+                } else if (dir.getText().toString().isEmpty()) {
+
+
+                    Toast.makeText(getApplicationContext(), "Llene todos los campos", Toast.LENGTH_SHORT).show();
+                    dir.requestFocus();
+
+
+                } else if (tel.getText().toString().isEmpty()) {
+
+
+                    Toast.makeText(getApplicationContext(), "Llene todos los campos", Toast.LENGTH_SHORT).show();
+                    tel.requestFocus();
+
+
+                } else if (esp.getSelectedItem().toString().isEmpty()) {
+
+
+                    Toast.makeText(getApplicationContext(), "Llene todos los campos", Toast.LENGTH_SHORT).show();
+                    esp.requestFocus();
+
+
+                }
+                else  if(validarSintaxisCorreo(corre.getText().toString())){
+
+                    nClinica = nombreClinica.getText().toString();
+                    nom = nombre.getText().toString();
+                    correo = corre.getText().toString();
+                    cont = contra.getText().toString();
+                    direc = dir.getText().toString();
+                    hora = hor.getText().toString();
+                    tele = tel.getText().toString();
+                    espe = esp.getSelectedItem().toString();
+                    Toast.makeText(getApplicationContext(), "Correo invalido", Toast.LENGTH_SHORT).show();
+
+
+
+                }
+
+                else{
+                    //Toast.makeText(getApplicationContext(), "Correo invalido", Toast.LENGTH_SHORT).show();
+
+                    builder.setMessage("Desea agregar su abicacion geografíca para que sus clientes encuentren mas facil su clinica?");
+                    builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(getApplicationContext(), MapsActivity2.class);
+                            startActivityForResult(intent, 1);
+                        }
+                    });
+
+                    builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            regsitro(0, 0);
+                        }
+                    });
+
+                    Dialog dialog = builder.create();
+                    dialog.show();
+
+                }
+
+
             }
         });
     }
@@ -110,4 +176,22 @@ public class Registro extends AppCompatActivity {
             startActivity(i);
             finish();
     }
+
+
+    public static boolean validarSintaxisCorreo(String campoCorreo){
+
+        Pattern pattern = Pattern
+                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+
+        Matcher mather = pattern.matcher(campoCorreo);
+
+        if (mather.find() == true) {
+            return true;
+        } else {
+//           JOptionPane.showMessageDialog(this, "Email ingresado es inválido.");
+            return false;
+        }
+    }
+
 }
