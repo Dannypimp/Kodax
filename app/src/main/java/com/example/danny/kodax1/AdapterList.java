@@ -111,6 +111,7 @@ public class AdapterList extends BaseAdapter implements Filterable {
                 results.count= filtradoDeContactos.size();
             }
             return results;
+
         }
 
         @Override

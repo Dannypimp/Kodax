@@ -58,6 +58,7 @@ public class ListaDoctores extends AppCompatActivity implements SearchView.OnQue
                 i.putExtras(bundle);
 
                 startActivity(i);
+
             }
         });
     }
