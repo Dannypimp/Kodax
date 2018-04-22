@@ -7,5 +7,6 @@
     <string name="title_activity_mapas">Map</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_maps2">Map</string>
-
+    <string name="action_buscar">Buscar</string>
+    <string name="action_reload">Buscar</string>
 </resources>

@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CompoundButton;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -17,10 +19,12 @@ import com.example.danny.kodax1.Usuarios.Usuario;
 import java.util.ArrayList;
 import java.util.zip.CheckedOutputStream;
 
-public class AdapterList extends BaseAdapter {
+public class AdapterList extends BaseAdapter implements Filterable {
 
     private Context context;
     private ArrayList<Usuario> modeloListViews;
+    ContactFilter mContactFilter;
+
 
     public AdapterList(Context context, ArrayList<Usuario> modeloListViews) {
         this.context = context;
@@ -29,6 +33,9 @@ public class AdapterList extends BaseAdapter {
 
     @Override
     public int getCount() {
+        if(modeloListViews == null){
+            return 0;
+        }
         return modeloListViews.size();
     }
 
@@ -66,5 +73,52 @@ public class AdapterList extends BaseAdapter {
     @Override
     public CharSequence[] getAutofillOptions() {
         return new CharSequence[0];
+    }
+
+    @Override
+    public Filter getFilter(){
+        if(mContactFilter==null)
+            mContactFilter=new ContactFilter();
+
+        return mContactFilter;
+    }
+
+    /*public void notifyDataSetChanged(){
+        super.notifyDataSetChanged();
+        boolean notifyChanged = true;
+    }*/
+
+    public class ContactFilter extends Filter{
+
+
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            FilterResults results = new FilterResults();
+            if (constraint == null || constraint.length() == 0){
+                results.values= modeloListViews;
+                results.count= modeloListViews.size();
+
+            }
+            else {
+                ArrayList<Usuario> filtradoDeContactos = new ArrayList<Usuario>();
+                for(Usuario u : modeloListViews){
+                    if (u.getNombre().toLowerCase().contains(constraint.toString().toLowerCase())){
+                        filtradoDeContactos.add(u);
+                    }
+                }
+
+                results.values= filtradoDeContactos;
+                results.count= filtradoDeContactos.size();
+            }
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+         modeloListViews= (ArrayList<Usuario>) results.values;
+            notifyDataSetChanged();
+
+
+        }
     }
 }
