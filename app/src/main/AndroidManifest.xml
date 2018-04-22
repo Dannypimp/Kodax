@@ -21,7 +21,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Principal"
+            android:name=".MainActivitydrawerpincipal"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -33,45 +33,35 @@
         <activity
             android:name=".Login"
             android:label="Login"
-            android:parentActivityName=".Principal">
-
+            android:parentActivityName=".MainActivitydrawerpincipal">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Principal"/>
+                android:value=".Principal" />
         </activity>
-
-
         <activity
             android:name=".Registro"
             android:label="Registro"
-            android:parentActivityName=".Principal">
-
+            android:parentActivityName=".MainActivitydrawerpincipal">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Principal"/>
+                android:value=".Principal" />
         </activity>
-
-
-        <activity android:name=".ListaDoctores"
+        <activity
+            android:name=".ListaDoctores"
             android:label="Lista Doctores"
-            android:parentActivityName=".Principal">
-
+            android:parentActivityName=".MainActivitydrawerpincipal">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Principal"/>
+                android:value=".Principal" />
         </activity>
-
-
         <activity android:name=".prueba" />
-
         <activity
             android:name=".perfil"
             android:label="Perfil"
-            android:parentActivityName=".Principal">
-
+            android:parentActivityName=".MainActivitydrawerpincipal">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Principal"/>
+                android:value=".Principal" />
         </activity>
 
         <!--
@@ -91,7 +81,8 @@
             android:label="@string/title_activity_maps" />
         <activity
             android:name=".MapsActivity2"
-            android:label="@string/title_activity_maps2"></activity>
+            android:label="@string/title_activity_maps2" />
+
     </application>
 
 </manifest>

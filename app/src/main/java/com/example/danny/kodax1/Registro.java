@@ -104,8 +104,7 @@ public class Registro extends AppCompatActivity {
                     esp.requestFocus();
 
 
-                }
-                else  if(validarSintaxisCorreo(corre.getText().toString())){
+                } else if(validarSintaxisCorreo(corre.getText().toString())){
 
                     nClinica = nombreClinica.getText().toString();
                     nom = nombre.getText().toString();
@@ -115,14 +114,6 @@ public class Registro extends AppCompatActivity {
                     hora = hor.getText().toString();
                     tele = tel.getText().toString();
                     espe = esp.getSelectedItem().toString();
-                    Toast.makeText(getApplicationContext(), "Correo invalido", Toast.LENGTH_SHORT).show();
-
-
-
-                }
-
-                else{
-                    //Toast.makeText(getApplicationContext(), "Correo invalido", Toast.LENGTH_SHORT).show();
 
                     builder.setMessage("Desea agregar su abicacion geografíca para que sus clientes encuentren mas facil su clinica?");
                     builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
@@ -143,9 +134,9 @@ public class Registro extends AppCompatActivity {
                     Dialog dialog = builder.create();
                     dialog.show();
 
+                } else {
+                    Toast.makeText(getApplicationContext(), "Correo invalido", Toast.LENGTH_SHORT).show();
                 }
-
-
             }
         });
     }
@@ -172,7 +163,7 @@ public class Registro extends AppCompatActivity {
             db.insertarregis(nClinica, nom, correo, cont, espe, direc,hora, tele, longitud, latitud);
             db.cerrar();
 
-            Intent i = new Intent(getApplication(),Principal.class);
+            Intent i = new Intent(getApplication(),MainActivitydrawerpincipal.class);
             startActivity(i);
             finish();
     }
