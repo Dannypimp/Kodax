@@ -3,25 +3,32 @@ package com.example.danny.kodax1;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.danny.kodax1.Usuarios.Usuario;
 import java.util.ArrayList;
 
-public class ListaDoctores extends AppCompatActivity {
+public class ListaDoctores extends AppCompatActivity implements SearchView.OnQueryTextListener, MenuItemCompat.OnActionExpandListener {
 
     ArrayList<String> extra;
     ArrayList<Usuario> usuarios;
     ListView lista;
     AdapterList ada;
 
-    DataBase db ;
+    DataBase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,29 +36,84 @@ public class ListaDoctores extends AppCompatActivity {
         setContentView(R.layout.activity_lista_doctores);
 
         Bundle data = getIntent().getExtras();
-        String area = data.getString("key_area","hola");
+        String area = data.getString("key_area", "hola");
 
-        db = new DataBase(this,"BD1",null,1);
+        db = new DataBase(this, "BD1", null, 1);
 
-        lista = (ListView)findViewById(R.id.ListOdo);
+        lista = (ListView) findViewById(R.id.ListOdo);
 
         ver(area);
 
         ada = new AdapterList(getApplicationContext(), ver(area));
         lista.setAdapter(ada);
 
+
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Usuario user = usuarios.get(position);
-                Intent i = new Intent(getApplicationContext(),perfil.class);
+                Intent i = new Intent(getApplicationContext(), perfil.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("usuario", user);
                 i.putExtras(bundle);
 
                 startActivity(i);
+
             }
         });
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_buscar, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_buscar);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+
+        searchView.setOnQueryTextListener(this);
+
+
+        MenuItemCompat.setOnActionExpandListener(searchItem, this);
+
+
+        return super.onCreateOptionsMenu(menu);
+
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_buscar:
+                Log.i("ActionBar", "Buscar");
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        Toast.makeText(getApplication(), "Buscando...", Toast.LENGTH_SHORT).show();
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+
+        ada.getFilter().filter(newText);
+        return true;
+    }
+
+    @Override
+    public boolean onMenuItemActionExpand(MenuItem item) {
+
+        return true;
+    }
+
+    @Override
+    public boolean onMenuItemActionCollapse(MenuItem item) {
+
+        return true;
     }
 
     private ArrayList<Usuario> ver(String especialidad) {
