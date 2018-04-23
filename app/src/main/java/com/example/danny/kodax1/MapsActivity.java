@@ -34,6 +34,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     DataBase db;
     ArrayList<Usuario> usuarios;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +43,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         db = new DataBase(this,"BD1",null,1);
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
         } else {
             int status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
@@ -75,7 +77,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         UiSettings uiSettings = mMap.getUiSettings();
         uiSettings.setZoomControlsEnabled(true);
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
         } else {
             LocationManager locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
@@ -85,9 +88,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 double latti = location.getLatitude();
                 double longi = location.getLongitude();
 
-                LatLng sydney = new LatLng(latti, longi);
-                mMap.addMarker(new MarkerOptions().position(sydney).title("Clinica medica Danli").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-                float zoonlevel = 20;
+               /*LatLng sydney = new LatLng(latti, longi);
+                mMap.addMarker(new MarkerOptions().position(sydney).title("Clinica medica Danli").icon(BitmapDescriptorFactory.defaultMarker
+                (BitmapDescriptorFactory.HUE_BLUE)));
+                float zoonlevel = 20;*/
 
                 //TRAER LATITUD Y LONGITUD BD
                 SQLiteDatabase db1 = db.getReadableDatabase();
@@ -95,7 +99,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Bundle bundle = getIntent().getExtras();
                 int id = bundle.getInt("id_key", 0);
                 usuarios =  new ArrayList<Usuario>();
-                Cursor c = db1.rawQuery("SELECT Latitud, Longitud FROM registros where ID = "+id+";", null);
+                Cursor c = db1.rawQuery("SELECT Latitud, Longitud , NombreClinica FROM registros where ID = "+id+";", null);
 
                 /*
                 * Longitud      Latitud*
@@ -109,19 +113,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                     Toast.makeText(getApplicationContext(), "El contacto no tiene ubicacion guardada", Toast.LENGTH_LONG).show();
                     LatLng sydney2 = new LatLng(latti, longi);
-                    mMap.addMarker(new MarkerOptions().position(sydney2).title("Clinica medica Katling").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+                    mMap.addMarker(new MarkerOptions().position(sydney2).title("").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
                     float zoonlevel2 = 20;
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney2, zoonlevel2));
 
                 }else{
-
+                  //  Toast.makeText(getApplicationContext(), "LAT:" + "LON:", Toast.LENGTH_LONG).show();
                     LatLng sydney2 = new LatLng(latitudDB, longitudDB);
-                    mMap.addMarker(new MarkerOptions().position(sydney2).title("Clinica medica Katling").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+                    mMap.addMarker(new MarkerOptions().position(sydney2).title("").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
                     float zoonlevel2 = 20;
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney2, zoonlevel2));
 
                 }
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoonlevel));
+                //  mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoonlevel));
 
             } else {
                 Toast.makeText(getApplicationContext(), "Enciende la ubicacion o tu movil no tiene gps", Toast.LENGTH_LONG).show();

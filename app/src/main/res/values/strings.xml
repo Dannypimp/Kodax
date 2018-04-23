@@ -8,8 +8,8 @@
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_maps2">Map</string>
     <string name="title_activity_main_activitydrawerpincipal">MainActivitydrawerpincipal</string>
-
+    <string name="action_buscar">Buscar</string>
+    <string name="action_reload">Buscar</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
 </resources>
