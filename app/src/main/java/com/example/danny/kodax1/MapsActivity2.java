@@ -37,9 +37,11 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
     private GoogleMap mMap;
     DataBase db;
     ArrayList<Usuario> usuarios;
-
     Button button;
+    LatLng punto;
 
+    static double mlong;
+    static double mlati;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +50,9 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         db = new DataBase(this, "BD1", null, 1);
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
+                PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
         } else {
             int status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
@@ -62,7 +66,6 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
                 dialog.show();
             }
         }
-
         button = (Button) findViewById(R.id.btnSaveUbicacion);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +77,9 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
                 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if (ActivityCompat.checkSelfPermission(getApplication(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        if (ActivityCompat.checkSelfPermission(getApplication(), Manifest.permission.ACCESS_FINE_LOCATION)
+                                != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(),
+                                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                             ActivityCompat.requestPermissions(getParent(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
                         } else {
                             LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -85,12 +90,13 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
                                 double longi = location.getLongitude();
 
                                 Intent intent = new Intent();
-                                intent.putExtra("latitud_key", latti);
-                                intent.putExtra("longitud_key", longi);
+                                intent.putExtra("latitud_key", mlati);
+                                intent.putExtra("longitud_key", mlong);
                                 setResult(RESULT_OK,intent);
                                 finish();
                             } else {
-                                Toast.makeText(getApplicationContext(), "Enciende la ubicacion o tu movil no tiene gps", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "Enciende la ubicacion o tu movil no tiene gps",
+                                        Toast.LENGTH_LONG).show();
                             }
                         }
                     }
@@ -123,12 +129,15 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
         UiSettings uiSettings = mMap.getUiSettings();
         uiSettings.setZoomControlsEnabled(true);
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
+                PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
         } else {
             LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -139,7 +148,29 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
                 double longi = location.getLongitude();
 
                 LatLng sydney = new LatLng(latti, longi);
-                mMap.addMarker(new MarkerOptions().position(sydney).title("Clinica medica Danli").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                mMap.addMarker(new MarkerOptions().position(sydney).title("Clinica medica Danli").
+                        icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+                mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+                    @Override
+                    public void onMapLongClick(LatLng latLng) {
+                        mMap.clear();
+                        punto = latLng;
+                        mlong = punto.longitude;
+                        mlati = punto.latitude;
+
+
+                        Toast.makeText(MapsActivity2.this,"punto " +punto,Toast.LENGTH_SHORT).show();
+
+                        mMap.addMarker(new MarkerOptions().position(punto));
+                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(punto, 16));
+                        button.setEnabled(true);
+                    }
+                });
+
+
+
                 float zoonlevel = 20;
 
                 //TRAER LATITUD Y LONGITUD BD
@@ -159,10 +190,23 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
                 double longitudDB = c.getDouble(1);
 
                 LatLng sydney2 = new LatLng(latitudDB, longitudDB);
-                mMap.addMarker(new MarkerOptions().position(sydney2).title("Clinica medica Katling").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+                mMap.addMarker(new MarkerOptions().position(sydney2).title("Clinica medica Katling").icon
+                (BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
                 float zoonlevel2 = 20;*/
 
+
+
+
+
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoonlevel));
+
+
+
+
+
+
+
+
                 // mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney2, zoonlevel2));
 
             } else {

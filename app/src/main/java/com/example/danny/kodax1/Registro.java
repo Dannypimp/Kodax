@@ -91,12 +91,13 @@ public class Registro extends AppCompatActivity {
         double latitud = data.getDoubleExtra("latitud_key", 0.0);
         double longitud = data.getDoubleExtra("longitud_key", 0.0);
         regsitro(longitud, latitud);
-        Toast.makeText(getApplicationContext(), "Registro exitoso con ubicación", Toast.LENGTH_SHORT).show();
+        Toast.makeText(Registro.this,  ""+ latitud + " , "+ longitud,  Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getApplicationContext(), "Registro exitoso con ubicación", Toast.LENGTH_SHORT).show();
         finish();
 
     }
 
-    public void regsitro(double longitud, double latitud){
+    public void regsitro(double latitud, double longitud ){
 
             if(longitud == 0 && latitud == 0){
                 Toast.makeText(getApplicationContext(), "Registro exitoso sin ubicación", Toast.LENGTH_SHORT).show();
