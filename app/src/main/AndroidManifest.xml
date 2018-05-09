@@ -37,7 +37,7 @@
         </activity>
         <activity
             android:name=".Login"
-            android:label="Iniciar Sesion"
+            android:label="Iniciar Sesión"
             android:parentActivityName=".MainActivitydrawerpincipal">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
