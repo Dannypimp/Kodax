@@ -51,71 +51,74 @@ public class Login extends AppCompatActivity {
         botonIngre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 EditText txtusu = (EditText)findViewById(R.id.editText);
                 EditText txtpass = (EditText)findViewById(R.id.editText2);
 
-                try {
-                    if(txtusu.getText().equals("")||txtpass.getText().equals("")){
-                        Toast.makeText(getApplicationContext(), "Llene los campos", Toast.LENGTH_LONG).show();
+                if(txtusu.getText().toString().isEmpty() || txtusu.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Llene todos los campos", Toast.LENGTH_SHORT).show();
+                } else {
 
-                    }
-                    Cursor cursor=db1.consultLogin(txtusu.getText().toString(),txtpass.getText().toString());
-                    if (cursor != null){
 
-                        Usuario u = null;
+                    try {
 
-                        ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+                        if(txtpass.getText().equals("") || txtusu.getText().equals("")){
+                            Toast.makeText(getApplicationContext(), "por favor llene los campos", Toast.LENGTH_LONG).show();
+                        }else {
+                            Cursor cursor=db1.consultLogin(txtusu.getText().toString(),txtpass.getText().toString());
+                            if (cursor != null){
 
-                        while (cursor.moveToNext()){
-                            u = new Usuario();
-                            u.setNombre(cursor.getString(1));
-                            u.setDireccion(cursor.getString(2));
-                            u.setNombreClinica(cursor.getString(0));
-                            u.setTelefono(cursor.getString(4));
-                            u.setHorario(cursor.getString(3));
-                            u.setId(cursor.getInt(5));
-                            usuarios.add(u);
+                                Usuario u = null;
+
+                                ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+
+                                while (cursor.moveToNext()){
+                                    u = new Usuario();
+                                    u.setNombre(cursor.getString(1));
+                                    u.setDireccion(cursor.getString(2));
+                                    u.setNombreClinica(cursor.getString(0));
+                                    u.setTelefono(cursor.getString(4));
+                                    u.setHorario(cursor.getString(3));
+                                    u.setId(cursor.getInt(5));
+                                    usuarios.add(u);
+                                }
+
+                                SharedPreferences preferencias = getSharedPreferences("preferenciaLogin",MODE_PRIVATE);
+                                SharedPreferences.Editor editor = preferencias.edit();
+                                editor.putString("sesion","si");
+                                int id = u.getId();
+                                editor.putInt("id_user", id);
+                                editor.putString("clinicas",u.getNombreClinica());
+                                editor.putString("nombre",u.getNombre());
+                                editor.putString("horario",u.getHorario());
+                                editor.putString("direccion",u.getDireccion());
+                                editor.putString("telefono",u.getTelefono());
+                                editor.apply();
+
+
+                                Intent i = new Intent(getApplicationContext(),perfil.class);
+                                Bundle bundle = new Bundle();
+                                bundle.putSerializable("usuario", usuarios.get(0));
+                                i.putExtras(bundle);
+                                startActivity(i);
+                                finish();
+                            }else{
+                                Toast.makeText(getApplicationContext(), "Correo y/o contrasena incorrecta", Toast.LENGTH_LONG).show();
+                            }
+
+                            txtusu.setText("");
+                            txtpass.setText("");
+                            txtusu.findFocus();
                         }
-                       ;
-
-                        SharedPreferences preferencias = getSharedPreferences("preferenciaLogin",MODE_PRIVATE);
-                        SharedPreferences.Editor editor = preferencias.edit();
-                        editor.putString("sesion","si");
-                        int id = u.getId();
-                        editor.putInt("id_user",u.getId());
-                        editor.putString("clinicas",u.getNombreClinica());
-                        editor.putString("nombre",u.getNombre());
-                        editor.putString("horario",u.getHorario());
-                        editor.putString("direccion",u.getDireccion());
-                        editor.putString("telefono",u.getTelefono());
-                        editor.apply();
-
-                        Intent i = new Intent(getApplicationContext(),perfil.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("usuario", usuarios.get(0));
-                        i.putExtras(bundle);
-                        startActivity(i);
-
-
-                    }else{
-                       Toast.makeText(getApplicationContext(), "Correo y/o contrasena incorrecta", Toast.LENGTH_LONG).show();
+                    }catch (SQLException e){
+                        e.printStackTrace();
                     }
-
-                    txtusu.setText("");
-                    txtpass.setText("");
-                    txtusu.findFocus();
-                }catch (SQLException e){
-                    e.printStackTrace();
-
-
                 }
-
 
 
             }
         });
-
-
 
     }
     @Override

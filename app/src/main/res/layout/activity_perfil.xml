@@ -1,5 +1,5 @@
-
-<LinearLayout
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,153 +8,163 @@
     android:orientation="vertical"
     tools:context="com.example.danny.kodax1.perfil">
 
-
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Nombre de la Clinica:"
-        android:textSize="17dp"
-        android:textStyle="bold"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="28dp"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/imageView"
-        android:layout_centerHorizontal="true" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textStyle="bold"
-        android:textSize="25dp"
-        android:layout_marginLeft="15dp"
-        android:id="@+id/tvNomCli"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/textView3"
-        />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Nombre del Doctor(@)"
-        android:textSize="17dp"
-        android:textStyle="bold"
-        android:layout_marginTop="28dp"
-        android:layout_marginLeft="15dp"
-        android:id="@+id/textView31"
-        android:layout_below="@+id/imageView"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="25dp"
-        android:textStyle="bold"
-        android:layout_marginLeft="15dp"
-        android:id="@+id/tvNomDoc"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/textView3"
-        />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Horario de atencion:"
-        android:textStyle="bold"
-        android:textSize="17dp"
-        android:layout_marginTop="33dp"
-        android:layout_marginLeft="15dp"
-        android:id="@+id/textView3"
-        />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="25dp"
-        android:textStyle="bold"
-        android:layout_marginLeft="15dp"
-        android:id="@+id/horario"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/textView3"
-        />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Dirección:"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        android:layout_marginTop="28dp"
-        android:layout_marginLeft="17dp"
-        android:id="@+id/tvDir"
-        android:layout_below="@+id/imageView"
-        android:layout_centerHorizontal="true" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre de la Clínica:"
+                android:textSize="17dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="28dp"
+                android:id="@+id/textView2"
+                android:layout_below="@+id/imageView"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textStyle="bold"
+                android:textSize="25dp"
+                android:layout_marginLeft="15dp"
+                android:id="@+id/tvNomCli"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/textView3"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre del Doctor(@)"
+                android:textSize="17dp"
+                android:textStyle="bold"
+                android:layout_marginTop="28dp"
+                android:layout_marginLeft="15dp"
+                android:id="@+id/textView31"
+                android:layout_below="@+id/imageView"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="15dp"
+                android:id="@+id/tvNomDoc"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/textView3"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Horario de atención:"
+                android:textStyle="bold"
+                android:textSize="17dp"
+                android:layout_marginTop="33dp"
+                android:layout_marginLeft="15dp"
+                android:id="@+id/textView3"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="15dp"
+                android:id="@+id/horario"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/textView3"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dirección:"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:layout_marginTop="28dp"
+                android:layout_marginLeft="17dp"
+                android:id="@+id/tvDir"
+                android:layout_below="@+id/imageView"
+                android:layout_centerHorizontal="true" />
 
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_alignEnd="@+id/textView2"
-            android:layout_alignRight="@+id/textView2"
-            android:layout_below="@+id/horario"
-            android:layout_marginLeft="15dp"
-            android:text=""
-            android:textSize="25dp"
-            android:textStyle="bold" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ver mapa"
-            android:layout_marginTop="10dp"
-            android:id="@+id/ubicarme"
-            android:layout_marginLeft="15dp"
-            android:background="@color/colorPrimaryDark"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/tvTelefono"
-            android:layout_width="140dp"
-            android:layout_height="55dp"
-            android:layout_alignLeft="@+id/textView3"
-            android:layout_alignStart="@+id/textView3"
-            android:layout_alignTop="@+id/image_call"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
-            android:textStyle="bold"
-            android:inputType="phone"
-            android:textSize="25dp" />
-
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="55dp"
-            android:src="@drawable/ic_phone"
-            android:fillColor="#17b739"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="25dp"
-            android:id="@+id/image_call"
-            android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@+id/textView"
-            android:layout_toEndOf="@+id/textView" />
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
 
 
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_alignEnd="@+id/textView2"
+                    android:layout_alignRight="@+id/textView2"
+                    android:layout_below="@+id/horario"
+                    android:layout_marginLeft="15dp"
+                    android:text=""
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
 
-</LinearLayout>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ver mapa"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/ubicarme"
+                    android:layout_marginLeft="15dp"
+                    android:background="@color/colorPrimaryDark"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvTelefono"
+                    android:layout_width="140dp"
+                    android:layout_height="55dp"
+                    android:layout_alignLeft="@+id/textView3"
+                    android:layout_alignStart="@+id/textView3"
+                    android:layout_alignTop="@+id/image_call"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:textStyle="bold"
+                    android:inputType="phone"
+                    android:textSize="25dp" />
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="55dp"
+                    android:src="@drawable/ic_phone"
+                    android:fillColor="#17b739"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="25dp"
+                    android:id="@+id/image_call"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toRightOf="@+id/textView"
+                    android:layout_toEndOf="@+id/textView" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</RelativeLayout>

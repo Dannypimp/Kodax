@@ -36,8 +36,8 @@
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_gravity="center"
-                android:layout_width="227dp"
-                android:layout_height="161dp"
+                android:layout_width="237dp"
+                android:layout_height="171dp"
                 app:srcCompat="@drawable/iconlogo" />
 
             <TextView
@@ -86,6 +86,7 @@
                 android:layout_gravity="center"
                 android:text="action_sign_in"
                 android:textStyle="bold"
+                android:layout_marginTop="15dp"
                 app:cardBackgroundColor="#080808"
                 app:cardCornerRadius="20dp" >
 

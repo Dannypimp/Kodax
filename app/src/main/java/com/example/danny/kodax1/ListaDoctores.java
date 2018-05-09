@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -25,6 +26,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.danny.kodax1.Usuarios.Usuario;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -46,23 +49,23 @@ public class ListaDoctores extends AppCompatActivity implements SearchView.OnQue
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_doctores);
 
+        usuarios = new ArrayList<Usuario>();
         Bundle data = getIntent().getExtras();
         String area = data.getString("key_area", "hola");
 
+        request = Volley.newRequestQueue(getApplicationContext());
         db = new DataBase(this, "BD1", null, 1);
 
         lista = (ListView) findViewById(R.id.ListOdo);
 
-        request = Volley.newRequestQueue(getApplicationContext());
+        //ver(area);
+        verBDR(area);
 
-        ver(area);
-
-
-        ada = new AdapterList(getApplicationContext(), ver(area));
-        lista.setAdapter(ada);
+        //ada = new AdapterList(getApplicationContext(), ver(area));
+        //lista.setAdapter(ada);
 
 
-        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        /*lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Usuario user = usuarios.get(position);
@@ -74,7 +77,15 @@ public class ListaDoctores extends AppCompatActivity implements SearchView.OnQue
                 startActivity(i);
 
             }
-        });
+        });*/
+    }
+
+    private void verBDR(String especialidad) {
+
+        String url = "https://kodaxpro.000webhostapp.com/BDRemota1/prueba.php?especialidad="+especialidad;
+        jsonRequest = new JsonObjectRequest(Request.Method.GET,url,null,this,this);
+        request.add(jsonRequest);
+
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -130,7 +141,7 @@ public class ListaDoctores extends AppCompatActivity implements SearchView.OnQue
         return true;
     }
 
-    private ArrayList<Usuario> ver(String especialidad) {
+    /*private ArrayList<Usuario> ver(String especialidad) {
 
         SQLiteDatabase db1 = db.getReadableDatabase();
 
@@ -154,15 +165,70 @@ public class ListaDoctores extends AppCompatActivity implements SearchView.OnQue
             usuarios.add(u);
         }
         return usuarios;
-    }
+    }*/
 
     @Override
     public void onErrorResponse(VolleyError error) {
+
+        Toast.makeText(getApplicationContext(), "no hay Doctores disponibles para esta especialidad", Toast.LENGTH_SHORT).show();
+        System.out.println();
+        Log.i("ERROR",error.toString() );
 
     }
 
     @Override
     public void onResponse(JSONObject response) {
+
+        Usuario usuario = null;
+
+        JSONArray json = response.optJSONArray("registros");
+
+
+        try {
+            if(json.length()==0){
+                Toast.makeText(getApplicationContext(), "no hay registros disponibles", Toast.LENGTH_SHORT).show();
+            }else {
+                for (int i = 0; i < json.length(); i++) {
+                    usuario = new Usuario();
+                    JSONObject jsonOb = null;
+                    jsonOb = json.getJSONObject(i);
+
+                    usuario.setId(jsonOb.optInt("id_registro"));
+                    usuario.setNombreClinica(jsonOb.optString("nombre_clinica"));
+                    usuario.setNombre(jsonOb.optString("nombre"));
+                    usuario.setTelefono(jsonOb.optString("telefono"));
+                    usuario.setDireccion(jsonOb.optString("direccion"));
+                    usuario.setHorario(jsonOb.optString("horario"));
+                    usuario.setLatitud(jsonOb.optDouble("longitud"));
+                    usuario.setLongitud(jsonOb.optDouble("latitud"));
+
+                    usuarios.add(usuario);
+
+
+                }
+            }
+            ada = new AdapterList(getApplicationContext(), usuarios);
+            lista.setAdapter(ada);
+            lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Usuario user = usuarios.get(position);
+                    Intent i = new Intent(getApplicationContext(), perfil.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("usuario", user);
+                    i.putExtras(bundle);
+
+                    startActivity(i);
+
+                }
+            });
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "No se hay conexion con el servidos" +response, Toast.LENGTH_SHORT).show();
+        }
 
     }
 }
