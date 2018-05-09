@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/principio"
+        android:title="Pagina Principal"
+        android:icon="@drawable/inicio"
+        app:showAsAction="withText"
+
+        />
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/iniciar_i"
+            android:icon="@drawable/ic_password"
+            android:title="Iniciar Sesion" />
+
+        <item
+            android:id="@+id/registros"
+            android:icon="@drawable/ic_doctor"
+            android:title="Registrese" />
+
+
+
+    </group>
+
+    <group android:checkableBehavior="single">
+
+
+        <item
+            android:id="@+id/cerrar_sesion"
+            android:icon="@drawable/cerrar"
+            android:title="Cerrar Sesion" />
+
+
+        <item
+            android:id="@+id/mod_perfil"
+            android:icon="@drawable/modificar"
+            android:title="Modificar Perfil" />
+
+
+
+
+
+    </group>
+
+
+
+</menu>

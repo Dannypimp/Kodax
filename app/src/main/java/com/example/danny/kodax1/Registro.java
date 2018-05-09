@@ -1,12 +1,15 @@
 package com.example.danny.kodax1;
 
 import android.app.Dialog;
+import android.app.DownloadManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,16 +19,26 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import org.json.JSONObject;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class Registro extends AppCompatActivity {
+public class Registro extends AppCompatActivity implements Response.Listener<JSONObject>, Response.ErrorListener {
 
     Spinner esp;
     EditText nombreClinica, nombre, corre, contra,  dir,hor, tel;
-    Button regist;
+    CardView regist;
 
+    RequestQueue requestQueue;
+    JsonObjectRequest jsonObjet;
     String nClinica, nom, correo, cont, direc,hora, tele, espe;
     DataBase db = new DataBase(this,"BD1",null,1);
     @Override
@@ -45,9 +58,9 @@ public class Registro extends AppCompatActivity {
         dir = (EditText)findViewById(R.id.edit5);
         hor = (EditText)findViewById(R.id.edit7);
         tel = (EditText)findViewById(R.id.edit6);
-        regist = (Button)findViewById(R.id.boton);
+        regist = (CardView) findViewById(R.id.boton);
 
-        ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource (this, R.array.esp, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource (this, R.array.esp, R.layout.spinner_item_espe);
         esp.setAdapter(adapter);
 
         regist.setOnClickListener(new View.OnClickListener() {
@@ -164,6 +177,12 @@ public class Registro extends AppCompatActivity {
             db.insertarregis(nClinica, nom, correo, cont, espe, direc,hora, tele, longitud, latitud);
             db.cerrar();
 
+            /*String url = "https://kodaxpro.000webhostapp.com/BDRemota1/JSONregistros.php?nombre_clinica=\"+nClinica+\"&nombre=\"+nom+\"&correo=\"+correo+\"&contrasena=\"+cont+\"&especialidad=\"+espe+\"&direccion=\"+direc+\"&horario=\"+hora+\"&telefono=\"+tele+\"&latitud=\"+latitud+\"&longitud="+longitud;
+
+            url = url.replace(" ", "%20");
+        jsonObjet = new JsonObjectRequest(Request.Method.GET,url,null,this,this);
+        requestQueue.add(jsonObjet);*/
+
             Intent i = new Intent(getApplication(),MainActivitydrawerpincipal.class);
             startActivity(i);
             finish();
@@ -186,4 +205,17 @@ public class Registro extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onErrorResponse(VolleyError error) {
+
+        Toast.makeText(getApplicationContext(), "no se ha registrado", Toast.LENGTH_SHORT).show();
+        Log.i("ERROR", error.toString());
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+
+        Toast.makeText(getApplicationContext(), "se ha registrado", Toast.LENGTH_SHORT).show();
+
+    }
 }

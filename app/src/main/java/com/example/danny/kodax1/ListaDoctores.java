@@ -18,15 +18,26 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.danny.kodax1.Usuarios.Usuario;
+
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
-public class ListaDoctores extends AppCompatActivity implements SearchView.OnQueryTextListener, MenuItemCompat.OnActionExpandListener {
+public class ListaDoctores extends AppCompatActivity implements SearchView.OnQueryTextListener, MenuItemCompat.OnActionExpandListener, Response.Listener<JSONObject>, Response.ErrorListener {
 
     ArrayList<String> extra;
     ArrayList<Usuario> usuarios;
     ListView lista;
     AdapterList ada;
+
+    RequestQueue request;
+    JsonObjectRequest jsonRequest;
 
     DataBase db;
 
@@ -42,7 +53,10 @@ public class ListaDoctores extends AppCompatActivity implements SearchView.OnQue
 
         lista = (ListView) findViewById(R.id.ListOdo);
 
+        request = Volley.newRequestQueue(getApplicationContext());
+
         ver(area);
+
 
         ada = new AdapterList(getApplicationContext(), ver(area));
         lista.setAdapter(ada);
@@ -140,5 +154,15 @@ public class ListaDoctores extends AppCompatActivity implements SearchView.OnQue
             usuarios.add(u);
         }
         return usuarios;
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+
     }
 }

@@ -1,11 +1,14 @@
 package com.example.danny.kodax1;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,11 +17,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.danny.kodax1.Usuarios.Usuario;
+
+import java.util.ArrayList;
+
 
 public class Login extends AppCompatActivity {
 
     TextView tvRegist;
-    Button botonIngre;
+    CardView botonIngre;
 
 
     DataBase db1 = new DataBase(this,"BD1",null,1);
@@ -29,7 +36,7 @@ public class Login extends AppCompatActivity {
 
 
 
-        tvRegist = (TextView)findViewById(R.id.textView3);
+        /*tvRegist = (TextView)findViewById(R.id.textView3);
 
         tvRegist.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,9 +44,9 @@ public class Login extends AppCompatActivity {
                 Intent i = new Intent(getApplicationContext(),Registro.class);
                 startActivity(i);
             }
-        });
+        });*/
 
-        botonIngre = (Button)findViewById(R.id.button);
+        botonIngre = (CardView) findViewById(R.id.button);
 
         botonIngre.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,24 +55,67 @@ public class Login extends AppCompatActivity {
                 EditText txtpass = (EditText)findViewById(R.id.editText2);
 
                 try {
-                    Cursor cursor=db1.consultLogin(txtusu.getText().toString(),txtpass.getText().toString());
-                    if (cursor.getCount()>0){
-                        Intent i = new Intent(getApplicationContext(),Principal.class);
-                        startActivity(i);
-                    }else{
-                        Toast.makeText(getApplicationContext(), "Correo y/o contrasena incorrecta", Toast.LENGTH_LONG).show();
+                    if(txtusu.getText().equals("")||txtpass.getText().equals("")){
+                        Toast.makeText(getApplicationContext(), "Llene los campos", Toast.LENGTH_LONG).show();
+
                     }
+                    Cursor cursor=db1.consultLogin(txtusu.getText().toString(),txtpass.getText().toString());
+                    if (cursor != null){
+
+                        Usuario u = null;
+
+                        ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+
+                        while (cursor.moveToNext()){
+                            u = new Usuario();
+                            u.setNombre(cursor.getString(1));
+                            u.setDireccion(cursor.getString(2));
+                            u.setNombreClinica(cursor.getString(0));
+                            u.setTelefono(cursor.getString(4));
+                            u.setHorario(cursor.getString(3));
+                            u.setId(cursor.getInt(5));
+                            usuarios.add(u);
+                        }
+                       ;
+
+                        SharedPreferences preferencias = getSharedPreferences("preferenciaLogin",MODE_PRIVATE);
+                        SharedPreferences.Editor editor = preferencias.edit();
+                        editor.putString("sesion","si");
+                        int id = u.getId();
+                        editor.putInt("id_user",u.getId());
+                        editor.putString("clinicas",u.getNombreClinica());
+                        editor.putString("nombre",u.getNombre());
+                        editor.putString("horario",u.getHorario());
+                        editor.putString("direccion",u.getDireccion());
+                        editor.putString("telefono",u.getTelefono());
+                        editor.apply();
+
+                        Intent i = new Intent(getApplicationContext(),perfil.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("usuario", usuarios.get(0));
+                        i.putExtras(bundle);
+                        startActivity(i);
+
+
+                    }else{
+                       Toast.makeText(getApplicationContext(), "Correo y/o contrasena incorrecta", Toast.LENGTH_LONG).show();
+                    }
+
                     txtusu.setText("");
                     txtpass.setText("");
                     txtusu.findFocus();
-
                 }catch (SQLException e){
                     e.printStackTrace();
+
+
                 }
+
 
 
             }
         });
+
+
 
     }
     @Override

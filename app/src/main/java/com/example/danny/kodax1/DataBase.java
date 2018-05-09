@@ -67,4 +67,13 @@ public class DataBase extends SQLiteOpenHelper {
                 "Correo like '"+usu+"' and Contraseña like '"+pass+"' ",null,null,null,null,null);
         return mcursor;
     }
+   /* public Cursor consultLogin(int id) throws SQLException {
+
+        Cursor mcursor = null;
+
+        mcursor = this.getReadableDatabase().rawQuery("SELECT NombreClinica, Nombre , " +
+                "Direccion,HorarioAtencion, Telefono, ID FROM registros WHERE ID = " + id ,null);
+        return mcursor;
+
+    }*/
 }

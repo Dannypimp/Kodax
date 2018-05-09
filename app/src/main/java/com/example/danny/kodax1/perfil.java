@@ -24,10 +24,14 @@ public class perfil extends AppCompatActivity {
     private static int id;
     private Button buttonMapa;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
+
+
 
         ImageView imageCall = (ImageView)findViewById(R.id.image_call);
         imageCall.setOnClickListener(new View.OnClickListener() {
@@ -37,8 +41,8 @@ public class perfil extends AppCompatActivity {
             }
         });
 
-        nombreClinica= (TextView) findViewById(R.id.textView2);
-        nombre= (TextView) findViewById(R.id.textView31);
+        nombreClinica= (TextView) findViewById(R.id.tvNomCli);
+        nombre= (TextView) findViewById(R.id.tvNomDoc);
         correo = (TextView) findViewById(R.id.textView3);
 
         horario_atencion = (TextView) findViewById(R.id.horario);
@@ -85,7 +89,7 @@ public class perfil extends AppCompatActivity {
                 startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
             }
         }else{
-            Toast.makeText( perfil.this, "enter phone number", Toast.LENGTH_SHORT ).show();
+            Toast.makeText( perfil.this, "Enter en el numero de Celular", Toast.LENGTH_SHORT ).show();
 
         }
     }
@@ -96,7 +100,7 @@ public class perfil extends AppCompatActivity {
             if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 makePhoneCall();
             }else{
-                Toast.makeText(this,"permiso negado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Permiso negado", Toast.LENGTH_SHORT).show();
             }
         }
     }
