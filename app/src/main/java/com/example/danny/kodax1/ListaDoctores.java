@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -32,7 +33,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class ListaDoctores extends AppCompatActivity implements SearchView.OnQueryTextListener, MenuItemCompat.OnActionExpandListener, Response.Listener<JSONObject>, Response.ErrorListener {
+public class ListaDoctores extends AppCompatActivity implements Response.Listener<JSONObject>, Response.ErrorListener {
 
     ArrayList<String> extra;
     ArrayList<Usuario> usuarios;
@@ -89,16 +90,23 @@ public class ListaDoctores extends AppCompatActivity implements SearchView.OnQue
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_buscar, menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_buscar, menu);
+        MenuItem item = menu.findItem(R.id.action_buscar);
+        SearchView searchView = (SearchView) item.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Toast.makeText(getApplication(), "Buscando...", Toast.LENGTH_SHORT).show();
+                return true;
+            }
 
-        MenuItem searchItem = menu.findItem(R.id.action_buscar);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-
-        searchView.setOnQueryTextListener(this);
-
-
-        MenuItemCompat.setOnActionExpandListener(searchItem, this);
-
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                ada.getFilter().filter(newText);
+                return true;
+            }
+        });
 
         return super.onCreateOptionsMenu(menu);
 
@@ -116,30 +124,7 @@ public class ListaDoctores extends AppCompatActivity implements SearchView.OnQue
 
     }
 
-    @Override
-    public boolean onQueryTextSubmit(String query) {
-        Toast.makeText(getApplication(), "Buscando...", Toast.LENGTH_SHORT).show();
-        return true;
-    }
 
-    @Override
-    public boolean onQueryTextChange(String newText) {
-
-        ada.getFilter().filter(newText);
-        return true;
-    }
-
-    @Override
-    public boolean onMenuItemActionExpand(MenuItem item) {
-
-        return true;
-    }
-
-    @Override
-    public boolean onMenuItemActionCollapse(MenuItem item) {
-
-        return true;
-    }
 
     /*private ArrayList<Usuario> ver(String especialidad) {
 
