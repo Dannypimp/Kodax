@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <item
         android:id="@+id/contacto"
-        android:icon="@drawable/usuario2"
+        android:icon="@drawable/doctores2"
         android:orderInCategory="100"
         android:title="otro"
         app:showAsAction="always" />
-
 
 </menu>

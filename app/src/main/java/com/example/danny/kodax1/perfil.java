@@ -19,12 +19,14 @@ import com.example.danny.kodax1.Usuarios.Usuario;
 
 public class perfil extends AppCompatActivity {
 
+
+
+
     TextView nombreClinica,nombre, correo, horario_atencion, direccion, telefono, nom,cor;
     private static final int REQUEST_CALL =1;
     private static int id;
     private Button buttonMapa;
-
-
+    private static double lati , longi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,8 @@ public class perfil extends AppCompatActivity {
             telefono.setText(usuario.getTelefono());
             horario_atencion.setText(usuario.getHorario());
             id = usuario.getId();
+            lati = usuario.getLatitud();
+            longi = usuario.getLongitud();
         }
 
         buttonMapa.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +73,8 @@ public class perfil extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
                 intent.putExtra("id_key", id);
+                intent.putExtra("lat_key", lati);
+                intent.putExtra("lon_key", longi);
                 startActivity(intent);
             }
         });
@@ -89,7 +95,7 @@ public class perfil extends AppCompatActivity {
                 startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
             }
         }else{
-            Toast.makeText( perfil.this, "Enter en el numero de Celular", Toast.LENGTH_SHORT ).show();
+            Toast.makeText( perfil.this, "enter phone number", Toast.LENGTH_SHORT ).show();
 
         }
     }
@@ -100,7 +106,7 @@ public class perfil extends AppCompatActivity {
             if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 makePhoneCall();
             }else{
-                Toast.makeText(this,"Permiso negado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"permiso negado", Toast.LENGTH_SHORT).show();
             }
         }
     }

@@ -99,15 +99,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Bundle bundle = getIntent().getExtras();
                 int id = bundle.getInt("id_key", 0);
                 usuarios =  new ArrayList<Usuario>();
-                Cursor c = db1.rawQuery("SELECT Latitud, Longitud , NombreClinica FROM registros where ID = "+id+";", null);
+                //Cursor c = db1.rawQuery("SELECT Latitud, Longitud , NombreClinica FROM registros where ID = "+id+";", null);
 
                 /*
                 * Longitud      Latitud*
                 * 67587658      4765447
                 */
-                c.moveToNext();
-                double latitudDB = c.getDouble(0);;
-                double longitudDB = c.getDouble(1);
+                //c.moveToNext();
+                double latitudDB = bundle.getDouble("lat_key", 0.0);
+                double longitudDB = bundle.getDouble("lon_key", 0.0);
 
                 if(latitudDB == 0 && longitudDB == 0){
 
@@ -118,7 +118,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney2, zoonlevel2));
 
                 }else{
-                  //  Toast.makeText(getApplicationContext(), "LAT:" + "LON:", Toast.LENGTH_LONG).show();
+                    //  Toast.makeText(getApplicationContext(), "LAT:" + "LON:", Toast.LENGTH_LONG).show();
                     LatLng sydney2 = new LatLng(latitudDB, longitudDB);
                     mMap.addMarker(new MarkerOptions().position(sydney2).title("").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
                     float zoonlevel2 = 20;

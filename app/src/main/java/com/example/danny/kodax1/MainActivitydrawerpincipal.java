@@ -53,7 +53,7 @@ public class MainActivitydrawerpincipal extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        //navigationView.inflateMenu(R.menu.menu_registro);// inflar menu segun acceso
+
         cardio = (ImageView)findViewById(R.id.card);
         pedia= (ImageView)findViewById(R.id.pedi);
         derma= (ImageView)findViewById(R.id.derma);
@@ -69,7 +69,7 @@ public class MainActivitydrawerpincipal extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(),ListaDoctores.class);
-                i.putExtra("key_area", "Cardiologia");
+                i.putExtra("key_area", "Cardiología");
                 startActivity(i);
             }
         });
@@ -77,7 +77,7 @@ public class MainActivitydrawerpincipal extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(),ListaDoctores.class);
-                i.putExtra("key_area", "Pediatria");
+                i.putExtra("key_area", "Pediatría");
                 startActivity(i);
             }
         });
@@ -85,7 +85,7 @@ public class MainActivitydrawerpincipal extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(),ListaDoctores.class);
-                i.putExtra("key_area", "Dermatologia");
+                i.putExtra("key_area", "Dermatología");
                 startActivity(i);
             }
         });
@@ -93,7 +93,7 @@ public class MainActivitydrawerpincipal extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(),ListaDoctores.class);
-                i.putExtra("key_area", "Odontologia");
+                i.putExtra("key_area", "Odontología");
                 startActivity(i);
             }
         });
@@ -101,7 +101,7 @@ public class MainActivitydrawerpincipal extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(),ListaDoctores.class);
-                i.putExtra("key_area", "Otorinolaringologia");
+                i.putExtra("key_area", "Otorinolaringología");
                 startActivity(i);
             }
         });
@@ -117,7 +117,7 @@ public class MainActivitydrawerpincipal extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(),ListaDoctores.class);
-                i.putExtra("key_area", "Ginecologia");
+                i.putExtra("key_area", "Ginecología");
                 startActivity(i);
             }
         });
@@ -125,7 +125,7 @@ public class MainActivitydrawerpincipal extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(),ListaDoctores.class);
-                i.putExtra("key_area", "Ortopedia");
+                i.putExtra("key_area", "Ortopedía");
                 startActivity(i);
             }
         });
@@ -133,7 +133,7 @@ public class MainActivitydrawerpincipal extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(),ListaDoctores.class);
-                i.putExtra("key_area", "Psicologia");
+                i.putExtra("key_area", "Psicología");
                 startActivity(i);
             }
         });
@@ -141,7 +141,7 @@ public class MainActivitydrawerpincipal extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(),ListaDoctores.class);
-                i.putExtra("key_area", "Oftalmologia");
+                i.putExtra("key_area", "Oftalmología");
                 startActivity(i);
             }
         });
@@ -189,8 +189,8 @@ public class MainActivitydrawerpincipal extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        switch (id){
-            case R.id.iniciar_i:
+       /* switch (id){
+            case R.id.nav_camera:
                 SharedPreferences preferencias = getSharedPreferences("preferenciaLogin",MODE_PRIVATE);
                String sesion = preferencias.getString("sesion","no");
                 if (sesion.equals("no")){
@@ -222,44 +222,44 @@ public class MainActivitydrawerpincipal extends AppCompatActivity
 
 
             // Handle the camera action
-        }
-       if (id == R.id.iniciar_i) {
+        }*/
+        if (id == R.id.iniciar_i) {
 
-           SharedPreferences preferencias = getSharedPreferences("preferenciaLogin",MODE_PRIVATE);
-           String sesion = preferencias.getString("sesion","no");
-           if (sesion.equals("no")) {
-               Intent intentLogin = new Intent(this, Login.class);
-               startActivity(intentLogin);
-           }else{
-               Toast.makeText(this,"Usted ya esta logueado",Toast.LENGTH_SHORT).show();
-           }
+            SharedPreferences preferencias = getSharedPreferences("preferenciaLogin",MODE_PRIVATE);
+            String sesion = preferencias.getString("sesion","no");
+            if (sesion.equals("no")) {
+                Intent intentLogin = new Intent(this, Login.class);
+                startActivity(intentLogin);
+            }else{
+                Toast.makeText(this,"Usted ya esta logueado",Toast.LENGTH_SHORT).show();
+            }
 
         } else if (id == R.id.registros) {
-               Intent intentRegistro = new Intent(this,Registro.class);
-               startActivity(intentRegistro);
+            Intent intentRegistro = new Intent(this,Registro.class);
+            startActivity(intentRegistro);
 
         } else if (id == R.id.cerrar_sesion) {
-           SharedPreferences preferencia = getSharedPreferences("preferenciaLogin",MODE_PRIVATE);
-           SharedPreferences.Editor editor = preferencia.edit();
-           editor.putString("sesion","no");
-           editor.apply();
-           Toast.makeText(this,"Deslogueado",Toast.LENGTH_SHORT).show();
+            SharedPreferences preferencia = getSharedPreferences("preferenciaLogin",MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferencia.edit();
+            editor.putString("sesion","no");
+            editor.apply();
+            Toast.makeText(this,"Deslogueado",Toast.LENGTH_SHORT).show();
 
         }else if (id == R.id.mod_perfil) {
-           SharedPreferences preferencias = getSharedPreferences("preferenciaLogin", MODE_PRIVATE);
-           String sesion = preferencias.getString("sesion", "no");
-           if (sesion.equals("no")) {
-               Toast.makeText(this, "Inicie sesion por favor", Toast.LENGTH_SHORT).show();
-           } else {
-               try {
-                       Intent i = new Intent(getApplicationContext(), PerfilUsuarioVer.class);
-                       startActivity(i);
-                       finish();
-               } catch (SQLException e) {
-                   e.printStackTrace();
-               }
-           }
-       }
+            SharedPreferences preferencias = getSharedPreferences("preferenciaLogin", MODE_PRIVATE);
+            String sesion = preferencias.getString("sesion", "no");
+            if (sesion.equals("no")) {
+                Toast.makeText(this, "Inicie sesion por favor", Toast.LENGTH_SHORT).show();
+            } else {
+                try {
+                    Intent i = new Intent(getApplicationContext(), PerfilUsuarioVer.class);
+                    startActivity(i);
+                    finish();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

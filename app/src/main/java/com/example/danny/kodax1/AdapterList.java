@@ -116,7 +116,7 @@ public class AdapterList extends BaseAdapter implements Filterable {
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-         modeloListViews= (ArrayList<Usuario>) results.values;
+            modeloListViews= (ArrayList<Usuario>) results.values;
             notifyDataSetChanged();
 
 

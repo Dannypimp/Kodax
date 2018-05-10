@@ -13,7 +13,7 @@ import android.widget.ImageView;
 
 public class Principal extends AppCompatActivity {
 
-ImageView cardio ,pedia,derma,od,otorri,general,gine,orto,psi,oftal ;
+    ImageView cardio ,pedia,derma,od,otorri,general,gine,orto,psi,oftal ;
 
 
 
@@ -135,11 +135,11 @@ ImageView cardio ,pedia,derma,od,otorri,general,gine,orto,psi,oftal ;
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-            if (id == R.id.contacto){
-                Intent i = new Intent(getApplicationContext(),Login.class);
-                startActivity(i);
-                return true;
-            }
+        if (id == R.id.contacto){
+            Intent i = new Intent(getApplicationContext(),Login.class);
+            startActivity(i);
+            return true;
+        }
 
 
         return super.onOptionsItemSelected(item);
