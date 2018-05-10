@@ -25,25 +25,7 @@
 
     </group>
 
-    <group android:checkableBehavior="single">
 
-
-        <item
-            android:id="@+id/cerrar_sesion"
-            android:icon="@drawable/cerrar"
-            android:title="Cerrar Sesion" />
-
-
-        <item
-            android:id="@+id/mod_perfil"
-            android:icon="@drawable/modificar"
-            android:title="Modificar Perfil" />
-
-
-
-
-
-    </group>
 
 
 
