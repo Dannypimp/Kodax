@@ -21,7 +21,7 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo8"
-        android:label="@string/app_name"
+        android:label="kodax clinical"
         android:roundIcon="@drawable/logo8"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
