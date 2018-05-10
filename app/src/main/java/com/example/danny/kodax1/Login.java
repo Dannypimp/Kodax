@@ -64,7 +64,7 @@ public class Login extends AppCompatActivity {
                     try {
 
                         if(txtpass.getText().equals("") || txtusu.getText().equals("")){
-                            Toast.makeText(getApplicationContext(), "por favor llene los campos", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Por favor llene los campos", Toast.LENGTH_LONG).show();
                         }else {
                             Cursor cursor=db1.consultLogin(txtusu.getText().toString(),txtpass.getText().toString());
                             if (cursor != null){
