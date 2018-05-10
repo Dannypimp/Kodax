@@ -152,9 +152,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:textColorHighlight="@color/cardview_dark_background"
-
                     android:ems="10"
-
                     android:inputType="textPersonName"
                     android:layout_weight="0.13" />
 
@@ -168,7 +166,7 @@
                 >
                 <AutoCompleteTextView
                     android:id="@+id/edit6"
-                    android:hint= "Nmero de Teléfono:"
+                    android:hint= "Número de Teléfono:"
                     android:textColor="#f30a0000"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"

@@ -170,7 +170,7 @@ public class ListaDoctores extends AppCompatActivity implements SearchView.OnQue
     @Override
     public void onErrorResponse(VolleyError error) {
 
-        Toast.makeText(getApplicationContext(), "no hay Doctores disponibles para esta especialidad", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "No hay Doctores disponibles para esta especialidad", Toast.LENGTH_SHORT).show();
         System.out.println();
         Log.i("ERROR",error.toString() );
 
