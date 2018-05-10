@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="esp">
-        <item>Odontologia</item>
-        <item>Dermatologia</item>
-        <item>Cardiologia</item>
-        <item>Pediatria</item>
-        <item>Ginecologia</item>
-        <item>Oftalmologia</item>
+        <item>Odontología</item>
+        <item>Dermatología</item>
+        <item>Cardiología</item>
+        <item>Pediatría</item>
+        <item>Ginecología</item>
+        <item>Oftalmología</item>
         <item>Medicina general</item>
-        <item>Ortopedia</item>
-        <item>Psicologia</item>
-        <item>Otorinolaringologia</item>
+        <item>Ortopedía</item>
+        <item>Psicología</item>
+        <item>Otorinolaringología</item>
 
     </string-array>
 </resources>
