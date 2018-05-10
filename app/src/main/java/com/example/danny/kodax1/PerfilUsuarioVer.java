@@ -1,6 +1,5 @@
 package com.example.danny.kodax1;
 
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,18 +22,15 @@ import com.example.danny.kodax1.Usuarios.Usuario;
 
 public class PerfilUsuarioVer extends AppCompatActivity {
 
-
     TextView nombreClinica,nombre, correo, horario_atencion, direccion, telefono, nom,cor;
     private static final int REQUEST_CALL =1;
     private static int id;
     private Button buttonMapa;
-    private static double lati , longi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_perfil);
-        
+        setContentView(R.layout.activity_perfil_usuario_ver);
 
         ImageView imageCall = (ImageView)findViewById(R.id.image_call);
         imageCall.setOnClickListener(new View.OnClickListener() {
@@ -44,38 +40,38 @@ public class PerfilUsuarioVer extends AppCompatActivity {
             }
         });
 
-        nombreClinica= (TextView) findViewById(R.id.tvNomCliPv);
-        nombre= (TextView) findViewById(R.id.tvNomDoc);
-        correo = (TextView) findViewById(R.id.textView3);
+        nombreClinica= (TextView) findViewById(R.id.textView2PV);
+        nombre= (TextView) findViewById(R.id.textView31PV);
+        correo = (TextView) findViewById(R.id.textView3PV);
 
         horario_atencion = (TextView) findViewById(R.id.horarioPV);
 
-        direccion = (TextView )findViewById(R.id.textView3PV);
-        telefono = (TextView) findViewById(R.id.tvTelefono);
-        buttonMapa = (Button) findViewById(R.id.ubicarme);
+        direccion = (TextView )findViewById(R.id.textViewPV);
+        telefono = (TextView) findViewById(R.id.tvTelefonoPV);
+        buttonMapa = (Button) findViewById(R.id.ubicarmePV);
 
-        Bundle bundle = getIntent().getExtras();
-        Usuario usuario = null;
+        SharedPreferences preferencias = getSharedPreferences("preferenciaLogin", MODE_PRIVATE);
 
-        if(bundle != null){
-            usuario = (Usuario) bundle.getSerializable("usuario");
-            nombre.setText(usuario.getNombre());
-            nombreClinica.setText(usuario.getNombreClinica());
-            direccion.setText(usuario.getDireccion());
-            telefono.setText(usuario.getTelefono());
-            horario_atencion.setText(usuario.getHorario());
-            id = usuario.getId();
-            lati = usuario.getLatitud();
-            longi = usuario.getLongitud();
-        }
+
+        final Integer id = preferencias.getInt("id_user",0);
+
+        String nom = preferencias.getString("nombre", "no");
+        String clinic = preferencias.getString("clinicas", "no");
+        String hora = preferencias.getString("horario", "no");
+        String dire = preferencias.getString("direccion", "no");
+        String cel = preferencias.getString("telefono", "no");
+        nombre.setText(nom);
+        nombreClinica.setText(clinic);
+        direccion.setText(dire);
+        telefono.setText(cel);
+        horario_atencion.setText(hora);
+
 
         buttonMapa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
                 intent.putExtra("id_key", id);
-                intent.putExtra("lat_key", lati);
-                intent.putExtra("lon_key", longi);
                 startActivity(intent);
             }
         });
@@ -96,7 +92,7 @@ public class PerfilUsuarioVer extends AppCompatActivity {
                 startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
             }
         }else{
-            Toast.makeText( PerfilUsuarioVer.this, "enter phone number", Toast.LENGTH_SHORT ).show();
+            Toast.makeText( PerfilUsuarioVer.this, "Enter en el numero de Celular", Toast.LENGTH_SHORT ).show();
 
         }
     }
@@ -107,10 +103,34 @@ public class PerfilUsuarioVer extends AppCompatActivity {
             if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 makePhoneCall();
             }else{
-                Toast.makeText(this,"permiso negado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Permiso negado", Toast.LENGTH_SHORT).show();
             }
         }
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_perfil, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        if (id == R.id.editar){
+            Intent i = new Intent(getApplicationContext(),RegistroEditable.class);
+            startActivity(i);
+            return true;
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
 
 }
+
+
