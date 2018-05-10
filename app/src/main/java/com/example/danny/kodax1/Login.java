@@ -64,7 +64,7 @@ public class Login extends AppCompatActivity {
                     try {
 
                         if(txtpass.getText().equals("") || txtusu.getText().equals("")){
-                            Toast.makeText(getApplicationContext(), "por favor llene los campos", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Por favor llene los campos", Toast.LENGTH_LONG).show();
                         }else {
                             Cursor cursor=db1.consultLogin(txtusu.getText().toString(),txtpass.getText().toString());
                             if (cursor != null){
@@ -75,12 +75,12 @@ public class Login extends AppCompatActivity {
 
                                 while (cursor.moveToNext()){
                                     u = new Usuario();
-                                    u.setNombre(cursor.getString(1));
-                                    u.setDireccion(cursor.getString(2));
-                                    u.setNombreClinica(cursor.getString(0));
-                                    u.setTelefono(cursor.getString(4));
-                                    u.setHorario(cursor.getString(3));
-                                    u.setId(cursor.getInt(5));
+                                    u.setNombre(cursor.getString(2));
+                                    u.setDireccion(cursor.getString(6));
+                                    u.setNombreClinica(cursor.getString(1));
+                                    u.setTelefono(cursor.getString(8));
+                                    u.setHorario(cursor.getString(7));
+                                    u.setId(cursor.getInt(0));
                                     usuarios.add(u);
                                 }
 

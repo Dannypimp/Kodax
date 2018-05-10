@@ -41,17 +41,18 @@ public class PerfilUsuarioVer extends AppCompatActivity {
             }
         });
 
-        nombreClinica= (TextView) findViewById(R.id.textView2PV);
-        nombre= (TextView) findViewById(R.id.textView31PV);
+        nombreClinica= (TextView) findViewById(R.id.tvNomCliPv);
+        nombre= (TextView) findViewById(R.id.tvNomDoc);
         correo = (TextView) findViewById(R.id.textView3PV);
 
         horario_atencion = (TextView) findViewById(R.id.horarioPV);
 
         direccion = (TextView )findViewById(R.id.textViewPV);
         telefono = (TextView) findViewById(R.id.tvTelefonoPV);
+
         buttonMapa = (Button) findViewById(R.id.ubicarmePV);
 
-        SharedPreferences preferencias = getSharedPreferences("preferenciaLogin", MODE_PRIVATE);
+       SharedPreferences preferencias = getSharedPreferences("preferenciaLogin", MODE_PRIVATE);
 
 
         final Integer id = preferencias.getInt("id_user",0);
@@ -93,7 +94,7 @@ public class PerfilUsuarioVer extends AppCompatActivity {
                 startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
             }
         }else{
-            Toast.makeText( PerfilUsuarioVer.this, "Enter en el numero de Celular", Toast.LENGTH_SHORT ).show();
+            Toast.makeText( PerfilUsuarioVer.this, "Enter en el número de celular", Toast.LENGTH_SHORT ).show();
 
         }
     }

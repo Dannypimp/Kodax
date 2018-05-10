@@ -155,7 +155,7 @@ public class ListaDoctores extends AppCompatActivity implements Response.Listene
     @Override
     public void onErrorResponse(VolleyError error) {
 
-        Toast.makeText(getApplicationContext(), "no hay Doctores disponibles para esta especialidad", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "No hay doctores disponibles para esta especialidad", Toast.LENGTH_SHORT).show();
         System.out.println();
         Log.i("ERROR",error.toString() );
 
@@ -212,7 +212,7 @@ public class ListaDoctores extends AppCompatActivity implements Response.Listene
 
         } catch (JSONException e) {
             e.printStackTrace();
-            Toast.makeText(getApplicationContext(), "No hay conexion con el servidor" +response, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "No hay conexión con el servidor" +response, Toast.LENGTH_SHORT).show();
         }
 
     }
