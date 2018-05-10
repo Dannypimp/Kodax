@@ -28,14 +28,10 @@ public class PerfilUsuarioVer extends AppCompatActivity {
     private static int id;
     private Button buttonMapa;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil_usuario_ver);
-
-
 
         ImageView imageCall = (ImageView)findViewById(R.id.image_call);
         imageCall.setOnClickListener(new View.OnClickListener() {
@@ -137,3 +133,5 @@ public class PerfilUsuarioVer extends AppCompatActivity {
     }
 
 }
+
+

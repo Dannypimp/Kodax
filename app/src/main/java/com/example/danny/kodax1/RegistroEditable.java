@@ -323,3 +323,5 @@ public class RegistroEditable extends AppCompatActivity implements LoaderManager
 
 
 }
+
+

@@ -87,8 +87,19 @@
         <activity
             android:name=".MapsActivity2"
             android:label="@string/title_activity_maps2" />
-        <activity android:name=".PerfilUsuarioVer" />
-        <activity android:name=".RegistroEditable" />
+        <activity android:name=".PerfilUsuarioVer"
+            android:parentActivityName=".MainActivitydrawerpincipal">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".Principal" />
+        </activity>
+
+        <activity android:name=".RegistroEditable"
+            android:parentActivityName=".MainActivitydrawerpincipal">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".Principal" />
+        </activity>
         <activity
             android:name=".Autenticacion"
             android:label="@string/title_activity_autenticacion"></activity>

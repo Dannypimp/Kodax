@@ -4,13 +4,12 @@
     tools:context="com.example.danny.kodax1.Principal">
 
     <item
-        android:icon="@drawable/usuario2"
+        android:icon="@drawable/contacto"
         android:id="@+id/contacto"
         android:title="Otro menu"
         android:titleCondensed="otro"
         app:showAsAction="always"
         ></item>
-
 
 </menu>
 
