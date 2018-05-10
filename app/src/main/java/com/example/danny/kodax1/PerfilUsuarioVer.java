@@ -41,8 +41,8 @@ public class PerfilUsuarioVer extends AppCompatActivity {
             }
         });
 
-        nombreClinica= (TextView) findViewById(R.id.textView2PV);
-        nombre= (TextView) findViewById(R.id.textView31PV);
+        nombreClinica= (TextView) findViewById(R.id.tvNomCliPv);
+        nombre= (TextView) findViewById(R.id.tvNomDoc);
         correo = (TextView) findViewById(R.id.textView3PV);
 
         horario_atencion = (TextView) findViewById(R.id.horarioPV);

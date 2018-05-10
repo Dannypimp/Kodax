@@ -57,7 +57,7 @@ public class Login extends AppCompatActivity {
                 EditText txtpass = (EditText)findViewById(R.id.editText2);
 
                 if(txtusu.getText().toString().isEmpty() || txtusu.getText().toString().isEmpty()){
-                    Toast.makeText(getApplicationContext(), "Llene todos los campos", Toast.LENGTH_SHORT).show();
+                     Toast.makeText(getApplicationContext(), "Llene todos los campos", Toast.LENGTH_SHORT).show();
                 } else {
 
 
