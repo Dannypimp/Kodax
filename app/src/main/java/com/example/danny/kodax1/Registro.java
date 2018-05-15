@@ -172,7 +172,7 @@ public class Registro extends AppCompatActivity implements LoaderManager.LoaderC
                     tele = tel.getText().toString();
                     espe = esp.getSelectedItem().toString();
 
-                    builder.setMessage("Desea agregar su abicacion geografíca para que sus clientes encuentren mas facil su clinica?");
+                    builder.setMessage("Desea agregar su Ubicación geográfíca para que sus clientes encuentren mas fácil su clínica?");
                     builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
