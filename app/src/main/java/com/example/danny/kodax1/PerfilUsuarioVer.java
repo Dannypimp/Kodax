@@ -25,9 +25,10 @@ public class PerfilUsuarioVer extends AppCompatActivity {
 
     TextView nombreClinica,nombre, correo, horario_atencion, direccion, telefono, nom,cor;
     private static final int REQUEST_CALL =1;
-    private static int id;
-    private Button buttonMapa;
 
+    private Button buttonMapa, modificar;
+
+    public static int id, id1;
 
 
     @Override
@@ -35,6 +36,7 @@ public class PerfilUsuarioVer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil_usuario_ver);
 
+// katling
 
 
         ImageView imageCall = (ImageView)findViewById(R.id.image_call);
@@ -45,8 +47,10 @@ public class PerfilUsuarioVer extends AppCompatActivity {
             }
         });
 
-        nombreClinica= (TextView) findViewById(R.id.textView2PV);
-        nombre= (TextView) findViewById(R.id.textView31PV);
+        modificar = (Button) findViewById(R.id.modificar);
+
+        nombreClinica= (TextView) findViewById(R.id.tvNomCliPv);
+        nombre= (TextView) findViewById(R.id.tvNomDoc);
         correo = (TextView) findViewById(R.id.textView3PV);
 
         horario_atencion = (TextView) findViewById(R.id.horarioPV);
@@ -58,7 +62,7 @@ public class PerfilUsuarioVer extends AppCompatActivity {
         SharedPreferences preferencias = getSharedPreferences("preferenciaLogin", MODE_PRIVATE);
 
 
-        final Integer id = preferencias.getInt("id_user",0);
+         id = preferencias.getInt("id_user",0);
 
         String nom = preferencias.getString("nombre", "no");
         String clinic = preferencias.getString("clinicas", "no");
@@ -71,6 +75,34 @@ public class PerfilUsuarioVer extends AppCompatActivity {
         telefono.setText(cel);
         horario_atencion.setText(hora);
 
+        Bundle bundle = getIntent().getExtras();
+        Usuario usuario = null;
+
+        if (bundle != null ){
+            usuario = (Usuario) bundle.getSerializable("usuario");
+            id1 = usuario.getId();
+
+        }
+
+//delmy
+        modificar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String nom = nombre.getText().toString();
+                String nomC = nombreClinica.getText().toString();
+                String dir = direccion.getText().toString();
+                String tel = telefono.getText().toString();
+                String hor = horario_atencion.getText().toString();
+                Intent in = new Intent(getApplicationContext(), RegistroEditable1.class);
+                in.putExtra("nm", nom);
+                in.putExtra("nmC", nomC);
+                in.putExtra("dir", dir);
+                in.putExtra("tel", tel);
+                in.putExtra("ho", hor);
+                in.putExtra("id_key", id);
+                startActivity(in);
+            }
+        });
 
         buttonMapa.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,28 +144,6 @@ public class PerfilUsuarioVer extends AppCompatActivity {
             }
         }
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_perfil, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        if (id == R.id.editar){
-            Intent i = new Intent(getApplicationContext(),RegistroEditable.class);
-            startActivity(i);
-            return true;
-        }
-
-
-        return super.onOptionsItemSelected(item);
-    }
 
 }

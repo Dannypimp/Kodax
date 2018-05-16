@@ -69,6 +69,9 @@ public class MainActivitydrawerpincipal extends AppCompatActivity
             navigationView.inflateMenu(R.menu.menu_inflado);
 
 
+            //katling
+            //xiomara
+
         }
         cardio = (ImageView)findViewById(R.id.card);
         pedia= (ImageView)findViewById(R.id.pedi);
@@ -210,7 +213,7 @@ public class MainActivitydrawerpincipal extends AppCompatActivity
                 SharedPreferences preferencias = getSharedPreferences("preferenciaLogin",MODE_PRIVATE);
                String sesion = preferencias.getString("sesion","no");
                 if (sesion.equals("no")){
-                    Intent intentLogin = new Intent(this,Login.class);
+                    Intent intentLogin = new Intent(this,Login1.class);
                     startActivity(intentLogin);
                     break;
 
@@ -248,7 +251,7 @@ public class MainActivitydrawerpincipal extends AppCompatActivity
            SharedPreferences preferencias = getSharedPreferences("preferenciaLogin",MODE_PRIVATE);
            String sesion = preferencias.getString("sesion","no");
            if (sesion.equals("no")) {
-               Intent intentLogin = new Intent(this, Login.class);
+               Intent intentLogin = new Intent(this, Login1.class);
                startActivity(intentLogin);
            }else{
                Toast.makeText(this,"Usted ya esta logueado",Toast.LENGTH_SHORT).show();

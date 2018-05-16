@@ -16,10 +16,7 @@
             android:icon="@drawable/ic_password"
             android:title="Iniciar Sesion" />
 
-        <item
-            android:id="@+id/registros"
-            android:icon="@drawable/ic_doctor"
-            android:title="Registrese" />
+
 
 
 

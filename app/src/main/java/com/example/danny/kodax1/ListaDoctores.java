@@ -45,6 +45,7 @@ public class ListaDoctores extends AppCompatActivity implements Response.Listene
 
     DataBase db;
 
+    //dani
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -155,7 +156,7 @@ public class ListaDoctores extends AppCompatActivity implements Response.Listene
     @Override
     public void onErrorResponse(VolleyError error) {
 
-        Toast.makeText(getApplicationContext(), "no hay Doctores disponibles para esta especialidad", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "No hay doctores disponibles para esta especialidad", Toast.LENGTH_SHORT).show();
         System.out.println();
         Log.i("ERROR",error.toString() );
 
@@ -186,6 +187,7 @@ public class ListaDoctores extends AppCompatActivity implements Response.Listene
                     usuario.setHorario(jsonOb.optString("horario"));
                     usuario.setLatitud(jsonOb.optDouble("longitud"));
                     usuario.setLongitud(jsonOb.optDouble("latitud"));
+                    usuario.setEspecialidad(jsonOb.optString("especialidad"));
 
                     usuarios.add(usuario);
 
