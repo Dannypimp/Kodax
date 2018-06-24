@@ -63,8 +63,17 @@ public class DataBase extends SQLiteOpenHelper {
     public Cursor consultLogin(String usu, String pass)throws SQLException {
 
         Cursor mcursor = null;
-        mcursor=this.getReadableDatabase().query("registros",new String[]{"ID","NombreClinica","Nombre","Correo","Contraseña, Especialida, Direccion,HorarioAtencion, Telefono"},
+        mcursor=this.getReadableDatabase().query("registros",new String[]{"ID","NombreClinica","Nombre","Correo","Contraseña, Especialida, Direccion, Telefono"},
                 "Correo like '"+usu+"' and Contraseña like '"+pass+"' ",null,null,null,null,null);
         return mcursor;
     }
+   /* public Cursor consultLogin(int id) throws SQLException {
+
+        Cursor mcursor = null;
+
+        mcursor = this.getReadableDatabase().rawQuery("SELECT NombreClinica, Nombre , " +
+                "Direccion,HorarioAtencion, Telefono, ID FROM registros WHERE ID = " + id ,null);
+        return mcursor;
+
+    }*/
 }

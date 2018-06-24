@@ -93,7 +93,7 @@
                 <AutoCompleteTextView
                     android:id="@+id/edit3"
                     android:hint= "Contraseña:"
-                    android:drawableLeft="@drawable/passwordr"
+                    android:drawableLeft="@drawable/password1"
                     android:textColor="#f30a0000"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
@@ -190,6 +190,7 @@
                 android:layout_gravity="center"
                 android:onClick="Listo"
                 android:text="action_sign_in"
+                android:layout_marginTop="15dp"
                 android:textStyle="bold"
                 app:cardBackgroundColor="#03000b"
                 app:cardCornerRadius="15dp">
@@ -201,7 +202,6 @@
                     android:layout_centerInParent="true"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:background="@drawable/efecto"
                     android:text="Registrar"
                     android:textColor="#fdfcfc"
                     android:textSize="25dp" />

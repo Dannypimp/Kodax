@@ -25,7 +25,6 @@
                 android:textSize="17dp"
                 android:textStyle="bold"
                 android:layout_marginLeft="15dp"
-                android:textColor="#2196F3"
                 android:layout_marginTop="28dp"
                 android:id="@+id/textView2"
                 android:layout_below="@+id/imageView"
@@ -49,7 +48,6 @@
                 android:text="Nombre del Doctor(@)"
                 android:textSize="17dp"
                 android:textStyle="bold"
-                android:textColor="#2196F3"
                 android:layout_marginTop="28dp"
                 android:layout_marginLeft="15dp"
                 android:id="@+id/textView31"
@@ -74,7 +72,6 @@
                 android:text="Horario de atención:"
                 android:textStyle="bold"
                 android:textSize="17dp"
-                android:textColor="#2196F3"
                 android:layout_marginTop="33dp"
                 android:layout_marginLeft="15dp"
                 android:id="@+id/textView3"
@@ -100,7 +97,6 @@
                 android:textStyle="bold"
                 android:layout_marginTop="28dp"
                 android:layout_marginLeft="17dp"
-                android:textColor="#2196F3"
                 android:id="@+id/tvDir"
                 android:layout_below="@+id/imageView"
                 android:layout_centerHorizontal="true" />
@@ -131,7 +127,6 @@
                     android:text="ver mapa"
                     android:layout_marginTop="10dp"
                     android:id="@+id/ubicarme"
-                    android:textColor="#ffffff"
                     android:layout_marginLeft="15dp"
                     android:background="@color/colorPrimaryDark"/>
 

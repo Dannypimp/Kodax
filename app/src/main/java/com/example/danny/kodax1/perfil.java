@@ -106,7 +106,7 @@ public class perfil extends AppCompatActivity {
             if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 makePhoneCall();
             }else{
-                Toast.makeText(this,"Permiso negado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"permiso negado", Toast.LENGTH_SHORT).show();
             }
         }
     }

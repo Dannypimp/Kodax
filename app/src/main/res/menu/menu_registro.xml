@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.danny.kodax1.Registro">
 
-
     <item
-        android:icon="@drawable/doctores2"
+        android:icon="@drawable/usuario2"
         android:id="@+id/registros"
         android:title="Otro menu"
         android:titleCondensed="otro"

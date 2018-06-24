@@ -26,7 +26,6 @@
             android:text="Nombre de la Clinica:"
             android:textSize="17dp"
             android:textStyle="bold"
-            android:textColor="#2196F3"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="28dp"
             android:id="@+id/textView2PV"
@@ -51,7 +50,6 @@
             android:text="Nombre del Doctor(@)"
             android:textSize="17dp"
             android:textStyle="bold"
-            android:textColor="#2196F3"
             android:layout_marginTop="28dp"
             android:layout_marginLeft="15dp"
             android:id="@+id/textView31PV"
@@ -76,7 +74,6 @@
             android:text="Horario de atencion:"
             android:textStyle="bold"
             android:textSize="17dp"
-            android:textColor="#2196F3"
             android:layout_marginTop="33dp"
             android:layout_marginLeft="15dp"
             android:id="@+id/textView3PV"
@@ -100,7 +97,6 @@
             android:text="Dirección:"
             android:textSize="15dp"
             android:textStyle="bold"
-            android:textColor="#2196F3"
             android:layout_marginTop="28dp"
             android:layout_marginLeft="17dp"
             android:id="@+id/tvDir"
@@ -127,16 +123,29 @@
                 android:textSize="25dp"
                 android:textStyle="bold" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ver mapa"
                 android:layout_marginTop="10dp"
-                android:textColor="#ffffff"
                 android:id="@+id/ubicarmePV"
                 android:layout_marginLeft="15dp"
                 android:background="@color/colorPrimaryDark"/>
 
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="editar"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/modificar"
+                    android:layout_marginLeft="145dp"
+                    android:background="@color/colorPrimaryDark"/>
+
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout

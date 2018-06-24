@@ -73,7 +73,7 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity2.this);
                 builder.setTitle("Ubicación");
-                builder.setMessage("Seguro que ésta es la ubicación de su clínica?");
+                builder.setMessage("Seguro que ésta es la ubicación de su clinica?");
                 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -95,7 +95,7 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
                                 setResult(RESULT_OK,intent);
                                 finish();
                             } else {
-                                Toast.makeText(getApplicationContext(), "Enciende la ubicación o tu móvil no tiene gps",
+                                Toast.makeText(getApplicationContext(), "Enciende la ubicacion o tu movil no tiene gps",
                                         Toast.LENGTH_LONG).show();
                             }
                         }
@@ -212,7 +212,7 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
             } else {
 
 
-                Toast.makeText(getApplicationContext(), "Enciende la ubicación o tu móvil no tiene gps", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Enciende la ubicacion o tu movil no tiene gps", Toast.LENGTH_LONG).show();
             }
         }
     }

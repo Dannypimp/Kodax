@@ -10,7 +10,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.danny.kodax1.Login">
+    tools:context="com.example.danny.kodax1.Login1">
 
     <!-- Login progress -->
     <ProgressBar
@@ -76,31 +76,11 @@
                 android:ems="10"
                 android:inputType="textPassword" />
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/button"
-                android:visibility="visible"
-                android:onClick="Listo"
-                style="?android:textAppearanceSmall"
-                android:layout_width="150dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center"
-                android:text="action_sign_in"
-                android:textStyle="bold"
-                android:layout_marginTop="15dp"
-                app:cardBackgroundColor="#080808"
-                app:cardCornerRadius="20dp" >
-
-                <TextView
-                    android:id="@+id/textView0"
-                    android:layout_width="match_parent"
-                    android:layout_height="37dp"
-                    android:layout_gravity="center"
-                    android:textColor="#f9f9f9"
-                    android:gravity="center"
-                    android:textSize="25dp"
-                    android:layout_centerInParent="true"
-                    android:text="Ingresar" />
-            </android.support.v7.widget.CardView>
+            <Button
+                android:id="@+id/iniSe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Iniciar sesion"/>
 
 
         </LinearLayout>

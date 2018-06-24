@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_buscar"
-        android:title="Buscar"
+        android:title="action_buscar"
         android:icon="@drawable/accion_buscar"
         android:orderInCategory="100"
         android:iconTint="#fff"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom|collapseActionView"
         app:actionViewClass="android.support.v7.widget.SearchView"></item>
 
 </menu>

@@ -2,11 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
     <item
-        android:id="@+id/editar"
+        android:id="@+id/edit10"
         android:title="Editar"
         android:tooltipText="#ffff"
-        android:titleCondensed="Editar"
         app:showAsAction="always"
         />
+
+
+    <item
+        android:id="@+id/modificar"
+        android:title="Modificar"
+        android:tooltipText="#ffff"
+        app:showAsAction="always"
+        />
+
 </menu>

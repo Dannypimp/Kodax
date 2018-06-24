@@ -27,6 +27,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.danny.kodax1.Usuarios.Usuario;
+
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -49,6 +52,9 @@ public class RegistroEditable extends AppCompatActivity implements LoaderManager
     CardView guardar;
 
 
+    String name ;
+    public static final String  nombres = "nombre";
+    ArrayList<Usuario> usuarioAdapterList;
     String nClinica, nom, correo, cont, direc,hora, tele, espe;
     DataBase db = new DataBase(this,"BD1",null,1);
 
@@ -59,6 +65,7 @@ public class RegistroEditable extends AppCompatActivity implements LoaderManager
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_editable);
+
 
         mEmailView = (AutoCompleteTextView) findViewById(R.id.edit0);
         mEmailView1 = (AutoCompleteTextView) findViewById(R.id.edit1);
@@ -71,6 +78,7 @@ public class RegistroEditable extends AppCompatActivity implements LoaderManager
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
 
 
         SharedPreferences sharedPreferences = getSharedPreferences("data", MODE_PRIVATE);
@@ -91,11 +99,27 @@ public class RegistroEditable extends AppCompatActivity implements LoaderManager
         nombreClinica = (EditText) findViewById(R.id.edit0);
         nombre = (EditText) findViewById(R.id.edit1);
 
-        esp = (Spinner) findViewById(R.id.sp_especial);
+        nombre.setText(name);
         dir = (EditText) findViewById(R.id.edit5);
         hor = (EditText) findViewById(R.id.edit7);
         tel = (EditText) findViewById(R.id.edit6);
         guardar = (CardView) findViewById(R.id.botonGuardar);
+
+
+       Bundle bundle = getIntent().getExtras();
+        Usuario usu = (Usuario) bundle.getSerializable("usuario");
+
+        if (bundle != null){
+            nombreClinica.setText(usu.getNombreClinica());
+            nombre.setText(usu.getNombre());
+            dir.setText(usu.getDireccion());
+            hor.setText(usu.getHorario());
+            tel.setText(usu.getTelefono());
+        }
+
+
+
+
 
         nombre.setText(nom[0]);
         nombreClinica.setText(clinic);
@@ -103,8 +127,9 @@ public class RegistroEditable extends AppCompatActivity implements LoaderManager
         tel.setText(cel);
         hor.setText(hora[0]);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.esp, android.R.layout.simple_spinner_item);
-        esp.setAdapter(adapter);
+
+
+
 
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,7 +181,7 @@ public class RegistroEditable extends AppCompatActivity implements LoaderManager
                 tele = tel.getText().toString();
                 espe = esp.getSelectedItem().toString();
 
-                builder.setMessage("Desea agregar su ubicación geográfica para que sus clientes encuentren más fácil su clinica?");
+                builder.setMessage("Desea agregar su abicacion geografíca para que sus clientes encuentren mas facil su clinica?");
                 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -323,5 +348,3 @@ public class RegistroEditable extends AppCompatActivity implements LoaderManager
 
 
 }
-
-

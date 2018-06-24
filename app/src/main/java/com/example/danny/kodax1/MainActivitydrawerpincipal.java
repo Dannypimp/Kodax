@@ -22,6 +22,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.danny.kodax1.Usuarios.Usuario;
+import com.example.danny.kodax1.conexion.RegistroPost;
 
 import java.util.ArrayList;
 
@@ -68,6 +69,9 @@ public class MainActivitydrawerpincipal extends AppCompatActivity
         }else{
             navigationView.inflateMenu(R.menu.menu_inflado);
 
+
+            //katling
+            //xiomara
 
         }
         cardio = (ImageView)findViewById(R.id.card);
@@ -191,7 +195,7 @@ public class MainActivitydrawerpincipal extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.contacto) {
 
-            Intent intent= new Intent(getApplicationContext(),Registro.class);
+            Intent intent= new Intent(getApplicationContext(), Registro.class);
             startActivity(intent);
             return true;
         }
@@ -210,7 +214,7 @@ public class MainActivitydrawerpincipal extends AppCompatActivity
                 SharedPreferences preferencias = getSharedPreferences("preferenciaLogin",MODE_PRIVATE);
                String sesion = preferencias.getString("sesion","no");
                 if (sesion.equals("no")){
-                    Intent intentLogin = new Intent(this,Login.class);
+                    Intent intentLogin = new Intent(this,Login1.class);
                     startActivity(intentLogin);
                     break;
 
@@ -248,7 +252,7 @@ public class MainActivitydrawerpincipal extends AppCompatActivity
            SharedPreferences preferencias = getSharedPreferences("preferenciaLogin",MODE_PRIVATE);
            String sesion = preferencias.getString("sesion","no");
            if (sesion.equals("no")) {
-               Intent intentLogin = new Intent(this, Login.class);
+               Intent intentLogin = new Intent(this, Login1.class);
                startActivity(intentLogin);
            }else{
                Toast.makeText(this,"Usted ya esta logueado",Toast.LENGTH_SHORT).show();

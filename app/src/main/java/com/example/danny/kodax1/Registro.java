@@ -1,5 +1,6 @@
 package com.example.danny.kodax1;
 
+
 import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.app.LoaderManager;
@@ -30,15 +31,20 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.common.api.Response;
 
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -64,7 +70,7 @@ public class Registro extends AppCompatActivity implements LoaderManager.LoaderC
     EditText nombreClinica, nombre, corre, contra,  dir,hor, tel;
     CardView regist;
 
-    String nClinica, nom, correo, cont, direc,hora, tele, espe;
+    String nClinica, nom, correo, cont, direc,hora, tele, espe, link;
     DataBase db = new DataBase(this,"BD1",null,1);
 
 
@@ -90,6 +96,7 @@ public class Registro extends AppCompatActivity implements LoaderManager.LoaderC
         mProgressView = findViewById(R.id.login_progress);
 
 
+        link = "https://kodaxpro.000webhostapp.com/BDRemota1/prueba1.php";
 
         SharedPreferences sharedPreferences = getSharedPreferences("data", MODE_PRIVATE);
         sharedPreferences.getAll().clear();
@@ -172,7 +179,7 @@ public class Registro extends AppCompatActivity implements LoaderManager.LoaderC
                     tele = tel.getText().toString();
                     espe = esp.getSelectedItem().toString();
 
-                    builder.setMessage("Desea agregar su Ubicación geográfíca para que sus clientes encuentren mas fácil su clínica?");
+                    builder.setMessage("Desea agregar su abicacion geografíca para que sus clientes encuentren mas facil su clinica?");
                     builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -250,7 +257,7 @@ public class Registro extends AppCompatActivity implements LoaderManager.LoaderC
 
     }
 
-    public void regsitro(double latitud, double longitud ){
+    public void regsitro(final double latitud, final double longitud ){
 
         if(longitud == 0 && latitud == 0){
             Toast.makeText(getApplicationContext(), "Registro exitoso sin ubicación", Toast.LENGTH_SHORT).show();
@@ -260,16 +267,55 @@ public class Registro extends AppCompatActivity implements LoaderManager.LoaderC
         db.insertarregis(nClinica, nom, correo, cont, espe, direc,hora, tele, longitud, latitud);
         db.cerrar();
 
+        final String lati = Double.toString(latitud);;
+        final String longi = Double.toString(longitud);
 
-        String url = "https://kodaxpro.000webhostapp.com/BDRemota1/JSONregistros.php?nombre_clinica="+nClinica+"&nombre="+nom+"&correo="+correo+"&contrasena="+cont+"&especialidad="+espe+"&direccion="+direc+"&horario="+hora+"&telefono="+tele+"&latitud="+latitud+"&longitud="+longitud;
 
-        url = url.replace(" ", "%20");
-        jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url,null,this,this);
-        requestQueue.add(jsonObjectRequest);
 
-        Intent i = new Intent(getApplication(),MainActivitydrawerpincipal.class);
-        startActivity(i);
-        finish();
+
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest StringRe = new StringRequest(Request.Method.POST, link,
+                new com.android.volley.Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                    Toast.makeText(getApplicationContext(), "se agrego exitosamente ", Toast.LENGTH_LONG).show();
+                        Intent i = new Intent(getApplicationContext(), MainActivitydrawerpincipal.class);
+                        startActivity(i);
+                    }
+                }, new com.android.volley.Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+
+        })
+        {
+            @Override
+            protected Map<String,String> getParams(){
+
+
+                Map<String,String> para = new HashMap<String, String>();
+                para.put("nameCli", nClinica);
+                para.put("name", nom);
+                para.put("tele", tele);
+                para.put("corre", correo);
+                para.put("contra", cont);
+                para.put("espe", espe);
+                para.put("dire", direc);
+                para.put("hora", hora);
+                para.put("lati", lati);
+                para.put("longi", longi);
+
+
+                return para;
+            }
+        };
+
+        int socketTimeout = 990000;//tiempo de espera
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        StringRe.setRetryPolicy(policy);
+        queue.add(StringRe);
+
     }
 
 
