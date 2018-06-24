@@ -238,7 +238,6 @@ public class MainActivitydrawerpincipal extends AppCompatActivity
                 editor.putString("sesion","no");
                 editor.apply();
 
-                finish();
 
 
                 break;

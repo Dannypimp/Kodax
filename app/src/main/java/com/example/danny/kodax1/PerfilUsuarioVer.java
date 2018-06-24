@@ -64,6 +64,7 @@ public class PerfilUsuarioVer extends AppCompatActivity {
 
          id = preferencias.getInt("id_user",0);
 
+        String pru = Integer.toString(id);
         String nom = preferencias.getString("nombre", "no");
         String clinic = preferencias.getString("clinicas", "no");
         String hora = preferencias.getString("horario", "no");

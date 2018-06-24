@@ -24,7 +24,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class Login1 extends AppCompatActivity implements Response.Listener<JSONObject>, Response.ErrorListener{
-//--------------------------------------- xiomara ------------------------------------------------------
 
     ArrayList<Usuario> usuarioArrayList;
     TextView usu, pass;
