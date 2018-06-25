@@ -2,6 +2,7 @@ package com.example.danny.kodax1;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -32,11 +33,11 @@ public class RegistroEditable1 extends AppCompatActivity {
     JsonObjectRequest jsonRequest;
 
      String nombre_clinica, nombre23, horario, telefono1, direccion, id_registro;
-    String dae, dar, link;
+    String dae, dar, link, link2;
     public static int id2;
     int id1;
     EditText nom, nomC, telefono, dirre, hora, id3;
-    Button mod;
+    Button mod, elim;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,12 +50,13 @@ public class RegistroEditable1 extends AppCompatActivity {
         dirre = (EditText) findViewById(R.id.dire);
         hora = (EditText) findViewById(R.id.hora);
         id3 = (EditText) findViewById(R.id.id);
-
+        elim = (Button) findViewById(R.id.eli);
 
         request = Volley.newRequestQueue(getApplicationContext());
         mod = (Button) findViewById(R.id.mod);
 
         link = "https://kodaxpro.000webhostapp.com/BDRemota1/actualizar.php";
+        link2 = "https://kodaxpro.000webhostapp.com/BDRemota1/Delete.php";
 
         SharedPreferences preferencias = getSharedPreferences("preferenciaLogin", MODE_PRIVATE);
 
@@ -107,7 +109,10 @@ public class RegistroEditable1 extends AppCompatActivity {
                         new com.android.volley.Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-                                Toast.makeText(getApplicationContext(), "se agrego exitosamente ", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "se ha Actualizado exitosamente ", Toast.LENGTH_LONG).show();
+                                Intent i = new Intent(getApplicationContext(), MainActivitydrawerpincipal.class);
+                                startActivity(i);
+                                finish();
 
                             }
                         }, new com.android.volley.Response.ErrorListener() {
@@ -147,6 +152,48 @@ public class RegistroEditable1 extends AppCompatActivity {
         //https://mega.nz/#F!Vf5gDIrI
 
 
+        elim.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                StringRequest StringRe = new StringRequest(Request.Method.POST, link2,
+                        new com.android.volley.Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                Toast.makeText(getApplicationContext(), "se elimino exitosamente ", Toast.LENGTH_LONG).show();
+
+                                Intent i = new Intent(getApplicationContext(), MainActivitydrawerpincipal.class);
+                                startActivity(i);
+                                finish();
+                            }
+                        }, new com.android.volley.Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+
+                })
+                {
+                    @Override
+                    protected Map<String,String> getParams(){
+
+
+                        Map<String,String> para = new HashMap<String, String>();
+                        para.put("id", id_registro);
+
+
+
+                        return para;
+                    }
+                };
+
+                int socketTimeout = 990000;//tiempo de espera
+                RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+                StringRe.setRetryPolicy(policy);
+                queue.add(StringRe);
+            }
+        });
     }
 
 
