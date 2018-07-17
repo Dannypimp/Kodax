@@ -6,6 +6,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -28,6 +29,16 @@ import java.util.Map;
 
 public class RegistroEditable1 extends AppCompatActivity {
 
+    private View mProgressView;
+    private View mLoginFormView;
+    private AutoCompleteTextView nom;
+    private AutoCompleteTextView nomC;
+    private AutoCompleteTextView telefono;
+    private AutoCompleteTextView dirre;
+    private AutoCompleteTextView hora;
+    private AutoCompleteTextView id3;
+
+
 
     RequestQueue request;
     JsonObjectRequest jsonRequest;
@@ -36,20 +47,23 @@ public class RegistroEditable1 extends AppCompatActivity {
     String dae, dar, link, link2;
     public static int id2;
     int id1;
-    EditText nom, nomC, telefono, dirre, hora, id3;
+
     Button mod, elim;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_editable1);
 
+        nom = (AutoCompleteTextView) findViewById(R.id.nm);
+        nomC = (AutoCompleteTextView) findViewById(R.id.nmC);
+        telefono = (AutoCompleteTextView) findViewById(R.id.tele);
+        dirre = (AutoCompleteTextView) findViewById(R.id.dire);
+        hora = (AutoCompleteTextView) findViewById(R.id.hora);
+        
 
-        nom = (EditText) findViewById(R.id.nm);
-        nomC = (EditText) findViewById(R.id.nmC);
-        telefono = (EditText) findViewById(R.id.tele);
-        dirre = (EditText) findViewById(R.id.dire);
-        hora = (EditText) findViewById(R.id.hora);
-        id3 = (EditText) findViewById(R.id.id);
+        mLoginFormView = findViewById(R.id.login_form);
+        mProgressView = findViewById(R.id.login_progress);
+
         elim = (Button) findViewById(R.id.eli);
 
         request = Volley.newRequestQueue(getApplicationContext());

@@ -1,87 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
     tools:context="com.example.danny.kodax1.RegistroEditable1">
 
-    <TextView
-        android:textSize="25dp"
+    <ScrollView
+        android:id="@+id/login_form"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Nombre clinica"/>
-    <EditText
-        android:id="@+id/nmC"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:textSize="25dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Nombre Doctor"/>
-    <EditText
-        android:id="@+id/nm"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:textSize="25dp"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Direccion"/>
-    <EditText
-        android:id="@+id/dire"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:textSize="25dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Telefono"/>
-    <EditText
-        android:id="@+id/tele"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:textSize="25dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Horario de atencion"/>
-    <EditText
-        android:id="@+id/hora"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:textSize="25dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ID"/>
-    <EditText
-        android:id="@+id/id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-
-        <Button
-
-            android:id="@+id/eli"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/email_login_form"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Eliminar cuenta"/>
-    <Button
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:weightSum="1"
+            android:layout_alignParentLeft="true">
 
-        android:id="@+id/mod"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="modificar"/>
-    </LinearLayout>
-</LinearLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <AutoCompleteTextView
+                    android:id="@+id/nmC"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:textColorHighlight="@color/cardview_dark_background"
+                    android:ems="40"
+                    android:drawableLeft="@drawable/clinica1"
+                    android:hint="Nombre de la Clinica:"
+                    android:inputType="textPersonName"
+                    android:textColor="#f30a0000" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+                <AutoCompleteTextView
+                    android:id="@+id/nm"
+                    android:hint="Doctor(a):"
+                    android:drawableLeft="@drawable/doctor1"
+                    android:textColor="#f30a0000"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:textColorHighlight="@color/cardview_dark_background"
+
+                    android:ems="10"
+
+                    android:inputType="textPersonName" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+                <AutoCompleteTextView
+                    android:id="@+id/dire"
+                    android:hint= "Direccion:"
+                    android:drawableLeft="@drawable/direccion1"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:textColorHighlight="@color/cardview_dark_background"
+                    android:textColor="#f30a0000"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <AutoCompleteTextView
+                    android:id="@+id/hora"
+                    android:hint= "Horario de Atencion:"
+                    android:drawableLeft="@drawable/horario1"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:textColorHighlight="@color/cardview_dark_background"
+
+                    android:ems="10"
+
+                    android:inputType="textPersonName"
+                    android:layout_weight="0.13" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+                <AutoCompleteTextView
+                    android:id="@+id/tele"
+                    android:hint= "Numero de Teléfono:"
+                    android:textColor="#f30a0000"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:maxLength="8"
+                    android:drawableLeft="@drawable/telefono1"
+                    android:textColorHighlight="@color/cardview_dark_background"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:layout_weight="0.10" />
+
+
+
+
+
+
+            </android.support.design.widget.TextInputLayout>
+
+
+
+            <Button
+
+                android:id="@+id/mod"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:background="#000"
+                android:text="modificar"
+                android:textColor="#fff"
+                android:textSize="20dp" />
+
+            <Button
+                android:id="@+id/eli"
+                android:layout_width="match_parent"
+                android:layout_marginTop="15dp"
+                android:textSize="20dp"
+                android:textColor="#fff"
+                android:background="#000"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Eliminar cuenta" />
+
+            <RelativeLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="118dp"
+                 android:orientation="horizontal">
+
+
+             </RelativeLayout>
+        </android.support.design.widget.TextInputLayout>
+
+
+
+    </ScrollView>
+
+</RelativeLayout>

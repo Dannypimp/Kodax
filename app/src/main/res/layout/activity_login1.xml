@@ -78,8 +78,10 @@
 
             <Button
                 android:id="@+id/iniSe"
-                android:layout_width="match_parent"
+                android:layout_width="349dp"
                 android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:background="#000"
                 android:text="Iniciar sesion"/>
 
 

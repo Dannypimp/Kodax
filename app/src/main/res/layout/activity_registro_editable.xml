@@ -10,7 +10,6 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
-
     tools:context="com.example.danny.kodax1.Registro">
 
     <ScrollView
