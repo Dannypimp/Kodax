@@ -89,7 +89,7 @@ public class MainActivitydrawerpincipal extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(),ListaDoctores.class);
-                i.putExtra("key_area", "Cardiología");
+                i.putExtra("key_area", "1");
                 startActivity(i);
             }
         });
@@ -97,7 +97,7 @@ public class MainActivitydrawerpincipal extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(),ListaDoctores.class);
-                i.putExtra("key_area", "Pediatría");
+                i.putExtra("key_area", "7");
                 startActivity(i);
             }
         });
@@ -105,7 +105,7 @@ public class MainActivitydrawerpincipal extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(),ListaDoctores.class);
-                i.putExtra("key_area", "Dermatología");
+                i.putExtra("key_area", "2");
                 startActivity(i);
             }
         });
@@ -113,7 +113,7 @@ public class MainActivitydrawerpincipal extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(),ListaDoctores.class);
-                i.putExtra("key_area", "Odontología");
+                i.putExtra("key_area", "5");
                 startActivity(i);
             }
         });
@@ -121,7 +121,7 @@ public class MainActivitydrawerpincipal extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(),ListaDoctores.class);
-                i.putExtra("key_area", "Otorinolaringología");
+                i.putExtra("key_area", "6");
                 startActivity(i);
             }
         });
@@ -129,7 +129,7 @@ public class MainActivitydrawerpincipal extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(),ListaDoctores.class);
-                i.putExtra("key_area", "Medicina_general");
+                i.putExtra("key_area", "4");
                 startActivity(i);
             }
         });
@@ -137,7 +137,7 @@ public class MainActivitydrawerpincipal extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(),ListaDoctores.class);
-                i.putExtra("key_area", "Ginecología");
+                i.putExtra("key_area", "3");
                 startActivity(i);
             }
         });
@@ -153,7 +153,7 @@ public class MainActivitydrawerpincipal extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(),ListaDoctores.class);
-                i.putExtra("key_area", "Psicología");
+                i.putExtra("key_area", "8");
                 startActivity(i);
             }
         });
