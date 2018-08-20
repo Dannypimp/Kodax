@@ -1,5 +1,7 @@
 package com.example.danny.kodax1;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
@@ -59,7 +61,7 @@ public class RegistroEditable1 extends AppCompatActivity {
         telefono = (AutoCompleteTextView) findViewById(R.id.tele);
         dirre = (AutoCompleteTextView) findViewById(R.id.dire);
         hora = (AutoCompleteTextView) findViewById(R.id.hora);
-        
+
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
@@ -102,7 +104,7 @@ public class RegistroEditable1 extends AppCompatActivity {
         telefono.setText(cel);
         dirre.setText(dire);
         hora.setText(hora1);
-        id3.setText(pru1);
+
 
 
 
@@ -170,42 +172,64 @@ public class RegistroEditable1 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-                StringRequest StringRe = new StringRequest(Request.Method.POST, link2,
-                        new com.android.volley.Response.Listener<String>() {
+                AlertDialog.Builder builder = new AlertDialog.Builder(RegistroEditable1.this);
+                builder.setTitle("Eliminar cuenta");
+                builder.setMessage("Esta seguro que quiere eliminar su cuenta");
+                builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                        StringRequest StringRe = new StringRequest(Request.Method.POST, link2,
+                                new com.android.volley.Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        Toast.makeText(getApplicationContext(), "se elimino exitosamente ", Toast.LENGTH_LONG).show();
+
+                                        Intent i = new Intent(getApplicationContext(), MainActivitydrawerpincipal.class);
+                                        startActivity(i);
+                                        finish();
+                                    }
+                                }, new com.android.volley.Response.ErrorListener() {
                             @Override
-                            public void onResponse(String response) {
-                                Toast.makeText(getApplicationContext(), "se elimino exitosamente ", Toast.LENGTH_LONG).show();
+                            public void onErrorResponse(VolleyError error) {
 
-                                Intent i = new Intent(getApplicationContext(), MainActivitydrawerpincipal.class);
-                                startActivity(i);
-                                finish();
                             }
-                        }, new com.android.volley.Response.ErrorListener() {
+
+                        })
+                        {
+                            @Override
+                            protected Map<String,String> getParams(){
+
+
+                                Map<String,String> para = new HashMap<String, String>();
+                                para.put("id", id_registro);
+
+
+
+                                return para;
+                            }
+                        };
+
+                        int socketTimeout = 990000;//tiempo de espera
+                        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+                        StringRe.setRetryPolicy(policy);
+                        queue.add(StringRe);
+                    }
+                });
+
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onErrorResponse(VolleyError error) {
+                    public void onClick(DialogInterface dialog, int which) {
 
                     }
+                });
 
-                })
-                {
-                    @Override
-                    protected Map<String,String> getParams(){
-
-
-                        Map<String,String> para = new HashMap<String, String>();
-                        para.put("id", id_registro);
+                Dialog dialog = builder.create();
+                dialog.show();
 
 
 
-                        return para;
-                    }
-                };
-
-                int socketTimeout = 990000;//tiempo de espera
-                RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-                StringRe.setRetryPolicy(policy);
-                queue.add(StringRe);
             }
         });
     }

@@ -84,7 +84,7 @@ public class ListaDoctores extends AppCompatActivity implements Response.Listene
 
     private void verBDR(String especialidad) {
 
-        String url = "https://kodaxpro.000webhostapp.com/BDRemota1/prueba.php?especialidad="+especialidad;
+        String url = "https://kodaxpro.000webhostapp.com/BDRemota1/lista.php?especialidad="+especialidad;
         jsonRequest = new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         request.add(jsonRequest);
 
